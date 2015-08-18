@@ -6,7 +6,7 @@ A website that integrates "prayer pins" and social media.
 * a section with some information about the project, which Stephen is apparently writing today
 * a section with social media integration of some sorts (Facebook and Instagram)
 
-### Other stuff
+### Links/Buttons
 * Contact Stephen for information, to get involved, buy pins, etc
 * ASWWU.com cause we're awesome. :stuck_out_tongue_winking_eye:
 * Open a popup which lets you enter information into a modal such as full name, email, and address (needs to query Google's api again to get the appropriate latitude and longitdue.)
