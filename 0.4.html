@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!--JQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!--Smooth Scrolling Plugin find here https://github.com/kswedberg/jquery-smooth-scroll-->
+  <script src="jquery.smooth-scroll.js"></script>
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+  <!--Instafeedjs
+  <script type="text/javascript" src="instafeed.min.js"></script>
+  <!--<script type="text/javascript">
+	    var feed = new Instafeed({
+	        get: 'tagged',
+	        tagName: 'awesome',
+	        clientId: 'YOUR_CLIENT_ID'
+	    });
+	    feed.run();
+	</script>-->
+	<style type="text/css">
+	  html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+	  .waves-effect.waves-theme-color .waves-ripple {
+	  		background-color: rgba(247, 38, 53, 1);
+	  	}
+	  	#pin {
+			margin: 50px; 
+			background-color: #f72635; 
+			height: 300px; 
+			width: 300px;
+			box-shadow: 0 0 20px #555;
+			border-radius: 50%;
+			transition: all .2s;
+			text-align: center;
+			-webkit-animation-name: pushup;
+			-webkit-animation-delay: 1s;
+			-webkit-animation-duration: 1s;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-name: pushup;
+			animation-delay: 1s;
+			animation-duration: .5s;
+			animation-timing-function: ease-in-out;
+			animation-fill-mode: forwards;
+		}
+		@-webkit-keyframes pushup {
+			from {}
+			to {
+			-ms-transform: translate(0,-10px); /* IE 9 */
+		    -webkit-transform: translate(0,-10px); /* Safari */
+		    transform: translate(0, -10px); /* Standard syntax */
+		    box-shadow: 0 20px 20px #555;
+			}
+		}
+		@keyframes pushup {
+			from {}
+			to {
+			-ms-transform: translate(0,-10px); /* IE 9 */
+		    -webkit-transform: translate(0,-10px); /* Safari */
+		    transform: translate(0, -10px); /* Standard syntax */
+		    box-shadow: 0 20px 20px #555;
+			}
+		}
+		.verticalMagic {
+			position: relative;
+			top: 25%;
+			-webkit-transform: translateY(-25%);
+			-ms-transform: translateY(-25%);
+			transform: translateY(-25%);
+		}
+		#pinText {
+			font-family: 'Roboto', sans-serif;
+			color: white;
+			font-size: 30px;
+		}
+		#key_PinText {
+			font-size: 15px; 
+			margin-left: auto; 
+			margin-right: auto; 
+			text-align: center; 
+			background-color: white; 
+			width: 100px; 
+			height: 30px; 
+			border-radius: 15px;
+			position: relative;
+			border: none;
+			box-shadow: 0 5px 20px rgba(0,0,0,.2);
+		}
+		.text-theme-color {
+			color: black;
+		}
+		.roundTile {
+			border-radius: 50%;
+			height: 150px;
+			width: 150px;
+			background-size: 150px 150px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+	</style>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script type="text/javascript">
+		//This is for the models
+		$(document).ready(function(){
+			//activate modal 
+			$('.modal-trigger').leanModal();
+			//This is supposed to make the map occupy 100% of the window and nothing more 
+			//but it doesn't seem to subtract the 64 (for the nav portion) .
+			$('.map-canvas').height($(window).height( ) - 64);
+			//This is for smooth scrolling.
+			$('a').smoothScroll();
+		});
+		
+	  var markers = [];
+      var pins = [
+      ["Home!","Walla Walla University", 46.046568, -118.390622],
+      ["Fred","School's tuff!", 46.047782, -118.340123],
+      ["George","Things don't allways go as planned.", 46.041486, -118.398145],
+      ["Allisyn","Why do bad things happen.", 46.046632, -118.391521],
+      ["Bob","Why is life in general hard to cope with.", 46.041023, -118.393452],
+      ["Brittney","My grandma is going through tuff times.", 46.046781, -118.398952]
+      ];
+      var wallaWalla = new google.maps.LatLng(46.046570, -118.390621); // (zoom 13)
+	  var unitedStates = new google.maps.LatLng(38.96370424778, -98.26366787500001); //United States (Zoom 4)
+	  var world = new google.maps.LatLng(9.281074119839158, 23.201175874999958);//Zoom 2
+      var map;
+      function initialize() {
+		  console.log("Hi there. I'm starting to work on the map.");
+        var styles = [
+		    {
+		      featureType: 'all',
+		      stylers: [
+		        { visibility: 'off' }
+		      ]
+		    },{
+		      featureType: 'road',
+		      elementType: 'geometry',
+		      stylers: [
+		        { saturation: -100 },
+		        { lightness: -85 },
+		        { visibility: 'on' }
+		      ]
+		    },{
+		      featureType: 'road',
+		      elementType: 'labels',
+		      stylers: [
+		        { saturation: -100 },
+		        { visibility: 'on' },
+		        { gamma: .2}
+		      ]
+		    },{
+		      featureType: 'city',
+		      elementType: 'labels',
+		      stylers: [
+		        { saturation: -100 },
+		        { visibility: 'on' }
+		      ]
+		    },{
+				featureType: 'all',
+				elementType: 'labels.text.fill',
+				stylers: [
+					{ lightness: -100 },
+					{ gamma: .01 }
+				]
+			},{
+				featureType: 'administrative',
+				elementType: 'geometry.stroke',
+				stylers: [
+					{ visibility: 'simplifed' }
+				]
+			},{
+				featureType: 'water',
+				elementType: 'geometry',
+				stylers: [
+					{ visibility: 'on' }/*,
+					{ color: '#4CCADC' },
+					{ color: '#f72635' },
+					{ lightness: 75	}*/
+				]
+			}
+		];
+        var mapOptions = {
+        	backgroundColor: "#FFFFFF",
+	        center: world,
+	        zoom: 2,
+	        disableDefaultUI: false,
+	        scrollwheel: false,
+	        styles: styles
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        window.setTimeout(updateMap(), 200);
+
+        function updateMap()
+        {
+			console.log("Alright Throwing down the pins.");
+        	for (var i = 0; i < pins.length; i++)
+	        {
+	          console.log("Working on '" + pins[i][0]+ "' at (" + pins[i][2] + "," + pins[i][3] + ").");
+	          markers.push(new google.maps.Marker({
+	            position: {lat: pins[i][2], lng: pins[i][3]},
+	            icon: 'prayer.ico',
+	            animation: google.maps.Animation.DROP,
+	            map: map,
+	            title: pins[i][0],
+	            zIndex: i
+	          }));      
+	        }
+        }
+
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+  </head>
+  <body>
+	<nav class="white">
+	   <div class="nav-wrapper">
+	   <a href="#" class="brand-logo"><img src="prayer-icon.png" style="height: 64px; padding: 7px;"></a>
+	   <ul class="right hide-on-med-and-down" id="nav-mobile">
+	    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#pinCheck">Pray It Forward</a></li>
+	    <li class="waves-effect waves-theme-color" title="Share The Pray"><a class="text-theme-color"; href="#Share">Share</a></li>
+		<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color"; href="#aboutUs">About Us</a></li>
+	    <li class="waves-effect waves-color-blue"><a class="text-theme-color"; href="http://aswwu.com">ASWWU</a></li>
+	    </ul>
+	  </div>
+	</nav>
+	<!--Map-->
+	<div id="map-canvas" style="width: 100%;"></div>
+	<!--Social-->
+	<div id="social" class="row" style="height: 100%; margin-bottom: 0;">
+		<!--Instagram-->
+		<div class="col s6" id="instafeed" style="height: 100%; background-color: #ABD9FF;">
+			<h4 style="margin-top: 0; text-align: center;">
+				Instagram
+			</h4>
+		</div>
+		<!--Facebook-->
+		<div class="col s6" style="height: 100%; background-color: #7791C9;">
+			<h4 style="margin-top: 0; text-align: center;">
+				Facebook
+			</h4>
+		</div>
+	  </div>
+	<!--About Us-->
+	<div id="aboutUs" style="height:200px;">
+		<h4 style="margin-top:0; text-align: center;">
+			About Us
+		</h4>
+		<div class="row">
+			<div class="col s3" style="height:100%;">
+				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
+					
+				</div>
+			</div>
+			<div class="col s3" style="height:100%;">
+				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
+					
+				</div>
+			</div>
+			<div class="col s3" style="height:100%;">
+				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
+					
+				</div>
+			</div>
+			<div class="col s3" style="height:100%;">
+				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
+					
+				</div>
+			</div>
+		</div>
+	  </div>
+		
+	<!--PinCheckModal-->
+	<div id="pinCheck" class="modal">
+    <div class="modal-content">
+		<h3 style="text-align:center;margin-bottom: ">Pray It Forward</h3>
+		<div class="row">
+			<div class="col s6">
+				<div class="input-field col s6">
+				  <input id="first_name" type="text" class="validate" autofocus>
+				  <label for="first_name">First Name</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="last_name" type="text" class="validate">
+				  <label for="last_name">Last Name</label>
+				</div>
+			</div>
+			<div class="col s6">
+				<div id="pin" style="margin: auto;">
+					<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
+					<div class="verticalMagic"><input type="number" id="key_PinText"></div>
+				</div>
+			</div>
+			  
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class=" modal-action modal-close waves-effect waves-theme-color btn-flat">Close</a>
+			</div>
+		</div>
+  </div>
+  </body>
+</html>
