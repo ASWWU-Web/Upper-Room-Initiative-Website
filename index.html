@@ -10,6 +10,9 @@
   <!--JQuery Instagramhttps://github.com/potomak/jquery-instagram
   <script src="instagram.min.js"></script>-->
 
+  <!--GOOGLE ICONS-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 
@@ -26,9 +29,10 @@
 	        get: 'tagged',
 	        tagName: 'prayitforward',
 	        clientId: '5706aa1ac7e84d609a8fd426259749be',
-	        limit: 10,
-	        template: '<li class="instagramTumb"><a href="{{link}}"><img src="{{image}}"></a></li>',
-	        sortBy: 'most-recent'
+	        limit: 9,
+	        template: '<div class="col s12 m6 l4"><div class="card"><div class="card-image waves-effect waves-block waves-blue"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4">{{model.username}}<i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><p>{{caption}}<br><a href="{{link}}">See post in context.</a></p></div></div></div>',
+	        sortBy: 'most-recent',
+	        resolution: 'standard_resolution'
 	    });
 	    feed.run();
 	</script>
@@ -240,16 +244,16 @@
 	<!--Map-->
 	<div id="map-canvas" style="width: 100%;"></div>
 	<!--Social-->
-	<div id="social" class="row" style="height: 100%; margin-bottom: 0;">
+	<div id="social" class="row" style=" margin-bottom: 0;">
 		<!--Instagram-->
-		<div class="col s6" style="height: 100%; background-color: #ABD9FF;">
-			<h4 style="margin-top: 0; text-align: center;">
-				Instagram
+		<div class="col s12 m6" style=" background-color: #ABD9FF;">
+			<h4 style="margin-top: 0; text-align: center; color: white;">
+				#PrayItFoward
 			</h4>
-			<ul id="instafeed" style="height:100%; width: 100%;"></ul>
+			<div id="instafeed" class="" style=""></div>
 		</div>
 		<!--Facebook-->
-		<div class="col s6" style="height: 100%; background-color: #7791C9;">
+		<div class="col s12 m6" style="height: 100%; background-color: #7791C9;">
 			<h4 style="margin-top: 0; text-align: center;">
 				Facebook
 			</h4>
