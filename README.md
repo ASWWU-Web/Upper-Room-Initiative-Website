@@ -3,7 +3,7 @@ A website that integrates "prayer pins" and social media.
 ##To Do's
 ### The site should contain.
 * a section that uses Google's apis to create a map of all the "pins" from their respective latitude and longitude
-* a section with some information about the project, which Stephen is apparently writing today
+* a section with some information about the project.
 * a section with social media integration of some sorts (Facebook and Instagram)
 
 ### Links/Buttons
