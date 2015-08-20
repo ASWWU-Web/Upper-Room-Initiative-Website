@@ -10,6 +10,10 @@
   <!--JQuery Instagramhttps://github.com/potomak/jquery-instagram
   <script src="instagram.min.js"></script>-->
 
+  <!-- Odometer includes http://github.hubspot.com/odometer/-->
+  <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-default.css" />
+  <script src="http://github.hubspot.com/odometer/odometer.js"></script>
+
   <!--GOOGLE ICONS-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -29,14 +33,36 @@
 	        get: 'tagged',
 	        tagName: 'prayitforward',
 	        clientId: '5706aa1ac7e84d609a8fd426259749be',
-	        limit: 9,
-	        template: '<div class="col s12 m6 l4"><div class="card"><div class="card-image waves-effect waves-block waves-blue"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4">{{model.username}}<i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><p>{{caption}}<br><a href="{{link}}">See post in context.</a></p></div></div></div>',
+	        limit: 12,
+	        //Sorry this has to be a single line. :( Turn word wrap on and you'll be fine. 
+	        template: '<div class="col s6 m6 l4"><div class="card hoverable"><div class="card-image waves-effect waves-block waves-blue"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><br><a href="{{link}}" style="color:black;"><b>{{model.user.full_name}}</b></a><p>{{caption}}<br><a href="{{link}}">See post in context.</a></p></div></div></div>',
 	        sortBy: 'most-recent',
 	        resolution: 'standard_resolution'
 	    });
 	    feed.run();
 	</script>
+	<script type="text/javascript">
+		$('#odometer').ready(function(){
+			var count = 1563;
+			var selector = document.querySelector('#odometer');
+			odometer = new Odometer({
+				el: selector,
+				value: 0,
+				duration: 3000,
+				format: ''
+			});
+			setInterval(function(){
+				count ++;
+				//odometer.innerHTML = count;
+				odometer.update(count);
+				console.log(count);
+			}, 3000);
+		})
+		
+		
+	</script>
 	<style type="text/css">
+	/*This is for the Google Map*/
 	  html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
 	  .waves-effect.waves-theme-color .waves-ripple {
 	  		background-color: rgba(247, 38, 53, 1);
@@ -113,6 +139,14 @@
 			background-size: 150px 150px;
 			margin-left: auto;
 			margin-right: auto;
+		}
+		#counter {
+			position: absolute; 
+			z-index: 100; top: 50%; 
+			left: 50%; 
+			margin-left: -125px; 
+			margin-top:-62px; 
+			font-size: 100px;
 		}
 	</style>
 	<script type="text/javascript">
@@ -231,56 +265,69 @@
   </head>
   <body>
 	<nav class="white">
-	   <div class="nav-wrapper">
-	   <a href="#" class="brand-logo"><img src="prayer-icon.png" style="height: 64px; padding: 7px;"></a>
-	   <ul class="right" id="nav-mobile">
-	    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
-	    <li class="waves-effect waves-theme-color" title="Share The Pray"><a class="text-theme-color"; href="#Share">Share</a></li>
-		<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color"; href="#aboutUs">About Us</a></li>
-	    <li class="waves-effect waves-orange darken-3"><a class="text-theme-color"; href="http://aswwu.com">ASWWU</a></li>
-	    </ul>
+	   	<div class="nav-wrapper">
+		    <ul><li class="hide-on-med-and-down"><a href="#" class="" style="max-height:64px;"><img  src="prayer-icon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
+		    <!--Title for Large-->
+		    <li class="hide-on-med-and-down text-theme-color" style="font-size: 25px; color: #333;">The Upper Room Initiative<li>
+		    <!--Title for Med.-->
+			<li class="hide-on-small-only hide-on-large-only text-theme-color" style="font-size: 18px;">The Upper Room Initiative<li>
+		    <!--Title for Small-->
+		    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px;">The Upper Room Initiative</li></ul>
+		    <ul class="right" id="nav-mobile">
+			    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
+			    <li class="waves-effect waves-theme-color" title="Share The Pray"><a class="text-theme-color"; href="#Share">Share</a></li>
+				<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color"; href="#aboutUs">About Us</a></li>
+			    <li class="waves-effect waves-orange darken-3"><a class="text-theme-color"; href="http://aswwu.com">ASWWU</a></li>
+			</ul>
 	  </div>
 	</nav>
 	<!--Map-->
-	<div id="map-canvas" style="width: 100%;"></div>
+	<div class="row"
+		<div class="col s12 m12 l12" id="map-canvas" style="width: 100%;"></div>
+	</div>
+	<!--Counter-->
+	<div id="counter">
+		<img  src="prayer-icon.png" style="opacity: 0.4;">
+		<div id="odometer" class="odometer"></div>
+	</div>
 	<!--Social-->
 	<div id="social" class="row" style=" margin-bottom: 0;">
 		<!--Instagram-->
-		<div class="col s12 m6" style=" background-color: #ABD9FF;">
-			<h4 style="margin-top: 0; text-align: center; color: white;">
-				#PrayItFoward
+		<div class="col s12 m6" style="height: 100%; background-color: #ABD9FF; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
+			<h4 style="margin-top: 0; text-align: center; color: white; padding-top:10px;">
+				#PrayItForward
 			</h4>
 			<div id="instafeed" class="" style=""></div>
 		</div>
 		<!--Facebook-->
-		<div class="col s12 m6" style="height: 100%; background-color: #7791C9;">
-			<h4 style="margin-top: 0; text-align: center;">
+		<div class="col s12 m6" style="height: 100%; background-color: #7791C9; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2), 15px 0 10px -10px #ABD9FF inset;">
+			<h4 style="margin-top: 0; text-align: center;color:white;">
 				Facebook
 			</h4>
 		</div>
 	  </div>
 	<!--About Us-->
-	<div id="aboutUs" style="height:200px;">
+	<div id="aboutUs" style="height:200px; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
 		<h4 style="margin-top:0; text-align: center;">
 			About Us
 		</h4>
 		<div class="row">
-			<div class="col s3" style="height:100%;">
+			<div class="col s6 m3" style="height:100%;">
 				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
 					
 				</div>
 			</div>
-			<div class="col s3" style="height:100%;">
+			<div class="col s6 m3" style="height:100%;">
 				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
 					
 				</div>
 			</div>
-			<div class="col s3" style="height:100%;">
+			<div class="col s6 m3" style="height:100%;">
 				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
 					
 				</div>
 			</div>
-			<div class="col s3" style="height:100%;">
+			<div class="col s6 m3" style="height:100%;">
 				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
 					
 				</div>
@@ -294,26 +341,26 @@
 		<h3 style="text-align:center;margin-bottom: ">Pray It Forward</h3>
 		<div class="row">
 			<!--Right Half-->
-			<div class="col s6">
+			<div class="col s12 m6">
 				<!--Name Portion-->
 				<div class="row">
-					<div class="input-field col s6">
+					<div class="input-field col s12 m6">
 					  <input id="first_name" type="text" class="validate" autofocus>
 					  <label for="first_name">First Name</label>
 					</div>
-					<div class="input-field col s6">
+					<div class="input-field col s12 m6">
 					  <input id="last_name" type="text" class="validate">
 					  <label for="last_name">Last Name</label>
 					</div>
 				</div>
-				<div class="input-field col s6">
+				<div class="input-field col s12 m6">
 				  <input id="email" type="email" class="validate" autofocus>
 				  <label for="email">Email</label>
 				</div>
 				<br>
 
 			</div>
-			<div class="col s6">
+			<div class="col s12 m6">
 				<div id="pin" style="margin: auto;">
 					<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
 					<div class="verticalMagic"><input type="number" id="key_PinText"></div>
