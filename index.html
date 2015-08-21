@@ -7,9 +7,6 @@
   <!--Smooth Scrolling Plugin find here https://github.com/kswedberg/jquery-smooth-scroll-->
   <script src="jquery.smooth-scroll.js"></script>
 
-  <!--JQuery Instagramhttps://github.com/potomak/jquery-instagram
-  <script src="instagram.min.js"></script>-->
-
   <!-- Odometer includes http://github.hubspot.com/odometer/-->
   <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-default.css" />
   <script src="http://github.hubspot.com/odometer/odometer.js"></script>
@@ -35,9 +32,9 @@
 	        clientId: '5706aa1ac7e84d609a8fd426259749be',
 	        limit: 12,
 	        //Sorry this has to be a single line. :( Turn word wrap on and you'll be fine. 
-	        template: '<div class="col s6 m6 l4"><div class="card hoverable"><div class="card-image waves-effect waves-block waves-blue"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><br><a href="{{link}}" style="color:black;"><b>{{model.user.full_name}}</b></a><p>{{caption}}<br><a href="{{link}}">See post in context.</a></p></div></div></div>',
+	        template: '<div class="col s6 m6 l4"><div class="card hoverable"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><br><a href="{{link}}" style="color:black;"><b>{{model.user.full_name}}</b></a><p>{{caption}}<br><a href="{{link}}">See post in context.</a></p></div></div></div>',
 	        sortBy: 'most-recent',
-	        resolution: 'standard_resolution'
+	        resolution: 'low_resolution'
 	    });
 	    feed.run();
 	</script>
@@ -51,13 +48,12 @@
 				duration: 3000,
 				format: ''
 			});
-			setInterval(function(){
-				count ++;
-				//odometer.innerHTML = count;
-				odometer.update(count);
-				console.log(count);
-			}, 3000);
-		})
+			odometer.update(count);
+				setInterval(function(){
+					count ++;
+					odometer.update(count);
+				}, 3000);
+		});
 		
 		
 	</script>
@@ -144,9 +140,38 @@
 			position: absolute; 
 			z-index: 100; top: 50%; 
 			left: 50%; 
-			margin-left: -125px; 
-			margin-top:-62px; 
+			margin-left: -158.5px; 
+			margin-top:-75px; 
 			font-size: 100px;
+		}
+		#scrollDownArrow {
+			color: black;
+			animation-name: bob;
+    		animation-duration: 2s;
+    		animation-iteration-count: 3;
+    		animation-delay: 4s;
+    		animation-timing-function: ease-in-out;
+    		-webkit-animation-name: bob;
+    		-webkit-animation-duration: 2s;
+    		-webkit-animation-iteration-count: infinite;
+    		-webkit-animation-iteration-count: 3;
+    		-webkit-animation-delay: 4s;
+		}
+		@keyframes bob {
+			0%{}
+			16%{transform: translateY(10px);}
+			32%{transform: translateY(0px);}
+			48%{transform: translateY(10px);}
+			64%{transform: translateY(0px);}
+			100%{transform: translateY(0px);}
+		}
+		@-webkit-keyframes bob {
+			0%{}
+			16%{transform: translateY(10px);}
+			32%{transform: translateY(0px);}
+			48%{transform: translateY(10px);}
+			64%{transform: translateY(0px);}
+			100%{transform: translateY(0px);}
 		}
 	</style>
 	<script type="text/javascript">
@@ -234,7 +259,7 @@
         var mapOptions = {
         	backgroundColor: "#FFFFFF",
 	        center: world,
-	        zoom: 2,
+	        zoom: 3,
 	        disableDefaultUI: false,
 	        scrollwheel: false,
 	        styles: styles
@@ -287,16 +312,18 @@
 	</div>
 	<!--Counter-->
 	<div id="counter">
-		<img  src="prayer-icon.png" style="opacity: 0.4;">
+		<img  src="prayer-icon.png" style="opacity: 0.7; width:70px;">
 		<div id="odometer" class="odometer"></div>
+	</div>
+	<!--Scroll Down Notifier-->
+	<div style="position: absolute; bottom:15px; right: 50%; margin-right: -75px; width: 150px; text-align: center;">
+		<a hfref="#social"><i id="scrollDownArrow" class="medium material-icons">keyboard_arrow_down</i></a>
 	</div>
 	<!--Social-->
 	<div id="social" class="row" style=" margin-bottom: 0;">
 		<!--Instagram-->
 		<div class="col s12 m6" style="height: 100%; background-color: #ABD9FF; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
-			<h4 style="margin-top: 0; text-align: center; color: white; padding-top:10px;">
-				#PrayItForward
-			</h4>
+			<img src="prayitforward.png" style="display: block; margin-top: 0; padding-top:10px; margin-left: auto; margin-right:auto;">
 			<div id="instafeed" class="" style=""></div>
 		</div>
 		<!--Facebook-->
@@ -329,7 +356,6 @@
 			</div>
 			<div class="col s6 m3" style="height:100%;">
 				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
-					
 				</div>
 			</div>
 		</div>
@@ -366,7 +392,6 @@
 					<div class="verticalMagic"><input type="number" id="key_PinText"></div>
 				</div>
 			</div>
-			  
 			</div>
 			<div class="modal-footer">
 			  <a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
