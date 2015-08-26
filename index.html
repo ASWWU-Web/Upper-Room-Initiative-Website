@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!--JQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -32,15 +33,17 @@
 	        clientId: '5706aa1ac7e84d609a8fd426259749be',
 	        limit: 12,
 	        //Sorry this has to be a single line. :( Turn word wrap on and you'll be fine. 
-	        template: '<div class="col s6 m6 l4"><div class="card hoverable"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><br><a href="{{link}}" style="color:black;"><b>{{model.user.full_name}}</b></a><p>{{caption}}<br><a href="{{link}}">See post in context.</a></p></div></div></div>',
+	        template: '<div class="col s6 m6 l4"><div class="card hoverable"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><br><a target="_blank" href="{{link}}" style="color:black;"><b>{{model.user.full_name}}</b></a><p>{{caption}}<br><a href="{{link}}" target="_blank">See post in context.</a></p></div></div></div>',
 	        sortBy: 'most-recent',
 	        resolution: 'low_resolution'
 	    });
-	    feed.run();
+		setTimeout(function(){
+			feed.run();
+		}, 1000);
 	</script>
 	<script type="text/javascript">
 		$('#odometer').ready(function(){
-			var count = 1563;
+			var count = 163;
 			var selector = document.querySelector('#odometer');
 			odometer = new Odometer({
 				el: selector,
@@ -179,6 +182,8 @@
 		$(document).ready(function(){
 			//activate modal 
 			$('.modal-trigger').leanModal();
+			//Mobile menu button
+			$(".button-collapse").sideNav();
 			//This is supposed to make the map occupy 100% of the window and nothing more 
 			//but it doesn't seem work without the height 100%. :(
 			$('.map-canvas').height($(window).height( ) - 64);
@@ -291,18 +296,29 @@
   <body>
 	<nav class="white">
 	   	<div class="nav-wrapper">
+
+	   		<a href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><i class="material-icons" style="color: grey; padding-left: 10px; padding-right: 20px;">menu</i></a>
 		    <ul><li class="hide-on-med-and-down"><a href="#" class="" style="max-height:64px;"><img  src="prayer-icon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
 		    <!--Title for Large-->
-		    <li class="hide-on-med-and-down text-theme-color" style="font-size: 25px; color: #333;">The Upper Room Initiative<li>
+		    <li class="hide-on-med-and-down text-theme-color" style="font-size: 25px; color: #333; font-weight: 300;">The Upper Room Initiative<li>
 		    <!--Title for Med.-->
-			<li class="hide-on-small-only hide-on-large-only text-theme-color" style="font-size: 18px;">The Upper Room Initiative<li>
+			<li class="hide-on-small-only hide-on-large-only text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative<li>
 		    <!--Title for Small-->
-		    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px;">The Upper Room Initiative</li></ul>
-		    <ul class="right" id="nav-mobile">
+		    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
+		    <ul class="right hide-on-small-only">
 			    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
 			    <li class="waves-effect waves-theme-color" title="Share The Prayer"><a class="text-theme-color" href="#social">Share</a></li>
 				<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color"; href="#aboutUs">About Us</a></li>
 			    <li class="waves-effect waves-orange darken-3"><a class="text-theme-color"; href="http://aswwu.com">ASWWU</a></li>
+			</ul>
+			<ul class="side-nav" id="nav-mobile">
+				<li class="logo" style="height: 150px;">
+					<a href="#" class="brand-logo" id="logo-container"><img src="prayer-icon.png"></a>
+			    </li>
+			    <li><a class="waves-effect waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
+			    <li title="Share The Prayer"><a class="waves-effect waves-theme-color text-theme-color" href="#social">Share</a></li>
+				<li><a id="aboutUsTrigger" class="text-theme-color waves-effect waves-theme-color" href="#aboutUs">About Us</a></li>
+			    <li><a class="waves-effect waves-orange text-theme-color" href="http://aswwu.com">ASWWU</a></li>
 			</ul>
 	  </div>
 	</nav>
@@ -334,32 +350,43 @@
 		</div>
 	  </div>
 	<!--About Us-->
-	<div id="aboutUs" style="height:200px; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
+	<div id="aboutUs" style="box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
 		<h4 style="margin-top:0; text-align: center;">
 			About Us
 		</h4>
 		<div class="row">
-			<div class="col s6 m3" style="height:100%;">
-				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
+			<div class="col s12 m4 l2" style="min-height:100%;">
+				<div class="roundTile" style="background-image: url('about1.jpg');">
 					
 				</div>
 			</div>
-			<div class="col s6 m3" style="height:100%;">
-				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
-					
+			<div class="col s12 m8 l10">
+				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 hide-on-med-and-up valign-wrapper" style="height:100%;">
+				<div class="roundTile valign" style="background-image: url('about2.jpg');">
 				</div>
 			</div>
-			<div class="col s6 m3" style="height:100%;">
-				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
-					
-				</div>
+			<div class="col s12 m8 l10">
+				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
 			</div>
-			<div class="col s6 m3" style="height:100%;">
-				<div class="roundTile" style="background-image: url('http://www.lawyersweekly.com.au/images/LW_Media_Library/594partner-profile-pic-An.jpg');">
+			<div class="col s12 m4 l2 hide-on-small-only valign-wrapper" style="height:100%;">
+				<div class="roundTile valign" style="background-image: url('about2.jpg');">
 				</div>
 			</div>
 		</div>
-	  </div>
+		<div class="row">
+			<div class="col s12 m4 l2" style="height:100%;">
+				<div class="roundTile" style="background-image: url('about3.jpg');">
+				</div>
+			</div>
+			<div class="col s12 m8 l10">
+				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+			</div>
+		</div>
+	</div>
 		
 	<!--prayItFoward-->
 	<div id="prayItFoward" class="modal">
@@ -371,7 +398,7 @@
 				<!--Name Portion-->
 				<div class="row">
 					<div class="input-field col s12 m6">
-					  <input id="first_name" type="text" class="validate" autofocus>
+					  <input id="first_name" type="text" class="validate">
 					  <label for="first_name">First Name</label>
 					</div>
 					<div class="input-field col s12 m6">
@@ -379,10 +406,15 @@
 					  <label for="last_name">Last Name</label>
 					</div>
 				</div>
-				<div class="input-field col s12 m6">
-				  <input id="email" type="email" class="validate" autofocus>
-				  <label for="email">Email</label>
+				<div class="input-field">
+					
+					<div class="col s12 m6">
+						<input id="location" type="text">
+						<label for="location">Location</label>
+					</div>
+					<i class="material-icons tooltipped prefix color-grey" data-position="bottom" data-delay="50" data-tooltip="Address, Zip-code, or City Name">info_outline</i>
 				</div>
+
 				<br>
 
 			</div>
