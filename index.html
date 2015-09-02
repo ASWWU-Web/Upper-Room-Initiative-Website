@@ -34,9 +34,9 @@
 	  	}
 	  	/*This is for that fancy dancy pin*/
 	  	#pin {
-			margin: 50px; 
-			background-color: #f72635; 
-			height: 300px; 
+			margin: 50px;
+			background-color: #f72635;
+			height: 300px;
 			width: 300px;
 			box-shadow: 0 0 20px #555;
 			border-radius: 50%;
@@ -83,13 +83,13 @@
 			font-size: 30px;
 		}
 		#key_PinText {
-			font-size: 15px; 
-			margin-left: auto; 
-			margin-right: auto; 
-			text-align: center; 
-			background-color: white; 
-			width: 100px; 
-			height: 30px; 
+			font-size: 15px;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			background-color: white;
+			width: 100px;
+			height: 30px;
 			border-radius: 15px;
 			position: relative;
 			border: none;
@@ -110,11 +110,11 @@
 		}
 		/*CSS For the Prayer Counter*/
 		#counter {
-			position: absolute; 
-			z-index: 100; top: 50%; 
-			left: 50%; 
-			margin-left: -158.5px; 
-			margin-top:-75px; 
+			position: absolute;
+			z-index: 100; top: 50%;
+			left: 50%;
+			margin-left: -158.5px;
+			margin-top:-75px;
 			font-size: 100px;
 		}
 		/*CSS and animaitions for the Scroll down arrow above the map*/
@@ -200,7 +200,6 @@
 				//FIXED-Make sure any close buttons don't have a href atribute specified.
 				$('a').smoothScroll();
 			}, 1000);
-			
 		});
 		
 	  var markers = [];
@@ -295,7 +294,7 @@
 	            map: map,
 	            title: pins[i][0],
 	            zIndex: i
-	          }));      
+	          }));
 	        }
         }
 
@@ -333,9 +332,7 @@
 	  </div>
 	</nav>
 	<!--Map-->
-	<div class="row"
-		<div class="col s12 m12 l12" id="map-canvas" style="width: 100%;"></div>
-	</div>
+	<div id="map-canvas" style="width: 100%;"></div>
 	<!--Counter-->
 	<div id="counter">
 		<img  src="prayer-icon.png" style="opacity: 0.7; width:70px;">
