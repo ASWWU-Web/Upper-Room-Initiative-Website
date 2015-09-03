@@ -42,6 +42,8 @@
 			border-radius: 50%;
 			transition: all .2s;
 			text-align: center;
+		}
+		.pushup-animation {
 			-webkit-animation-name: pushup;
 			-webkit-animation-delay: 1s;
 			-webkit-animation-duration: 1s;
@@ -176,14 +178,14 @@
 				format: ''
 			});
 			odometer.update(count);
-				setInterval(function(){
-					count ++;
-					odometer.update(count);
-				}, 3000);
+			setInterval(function(){
+				count ++;
+				odometer.update(count);
+			}, 3000);
 		});
 	</script>
-	<!--Materialize and smooth scroll initializations-->
 	<script type="text/javascript">
+		//Materialize and smooth scroll initializations
 		$(document).ready(function(){
 			setTimeout(function () {
 				//activate modal 
@@ -198,108 +200,109 @@
 				//This is for smooth scrolling.
 				//Smooth Scrolling interferes with Materiaz's close modal HTML method. 
 				//FIXED-Make sure any close buttons don't have a href atribute specified.
-				$('a').smoothScroll();
+				$('.smoothScroll').smoothScroll();
 			}, 1000);
 		});
-		
-	  var markers = [];
-      var pins = [
-      ["Home!","Walla Walla University", 46.046568, -118.390622],
-      ["Fred","School's tuff!", 46.047782, -118.340123],
-      ["George","Things don't allways go as planned.", 46.041486, -118.398145],
-      ["Allisyn","Why do bad things happen.", 46.046632, -118.391521],
-      ["Bob","Why is life in general hard to cope with.", 46.041023, -118.393452],
-      ["Brittney","My grandma is going through tuff times.", 46.046781, -118.398952]
-      ];
-      var wallaWalla = new google.maps.LatLng(46.046570, -118.390621); // (zoom 13)
-	  var unitedStates = new google.maps.LatLng(38.96370424778, -98.26366787500001); //United States (Zoom 4)
-	  var world = new google.maps.LatLng(9.281074119839158, 23.201175874999958);//Zoom 2
-      var map;
-      function initialize() {
-		  console.log("Hi there. I'm starting to work on the map.");
-        var styles = [
-		    {
-		      featureType: 'all',
-		      stylers: [
-		        { visibility: 'off' }
-		      ]
-		    },{
-		      featureType: 'road',
-		      elementType: 'geometry',
-		      stylers: [
-		        { saturation: -100 },
-		        { lightness: -85 },
-		        { visibility: 'on' }
-		      ]
-		    },{
-		      featureType: 'road',
-		      elementType: 'labels',
-		      stylers: [
-		        { saturation: -100 },
-		        { visibility: 'on' },
-		        { gamma: .2}
-		      ]
-		    },{
-		      featureType: 'city',
-		      elementType: 'labels',
-		      stylers: [
-		        { saturation: -100 },
-		        { visibility: 'on' }
-		      ]
-		    },{
-				featureType: 'all',
-				elementType: 'labels.text.fill',
-				stylers: [
-					{ lightness: -100 },
-					{ gamma: .01 }
-				]
-			},{
-				featureType: 'administrative',
-				elementType: 'geometry.stroke',
-				stylers: [
-					{ visibility: 'simplifed' }
-				]
-			},{
-				featureType: 'water',
-				elementType: 'geometry',
-				stylers: [
-					{ visibility: 'on' }/*,
-					{ color: '#4CCADC' },
-					{ color: '#f72635' },
-					{ lightness: 75	}*/
-				]
-			}
+
+		//This is an array of Google markers it will be populated when the map finishes initializing. 
+		var markers = [];
+		var pins = [
+		["Home!","Walla Walla University", 46.046568, -118.390622],
+		["Fred","School's tuff!", 46.047782, -118.340123],
+		["George","Things don't allways go as planned.", 46.041486, -118.398145],
+		["Allisyn","Why do bad things happen.", 46.046632, -118.391521],
+		["Bob","Why is life in general hard to cope with.", 46.041023, -118.393452],
+		["Brittney","My grandma is going through tuff times.", 46.046781, -118.398952]
 		];
-        var mapOptions = {
-        	backgroundColor: "#FFFFFF",
-	        center: world,
-	        zoom: 3,
-	        disableDefaultUI: false,
-	        scrollwheel: false,
-	        styles: styles
-        };
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        window.setTimeout(updateMap(), 200);
-
-        function updateMap()
-        {
-			console.log("Alright Throwing down the pins.");
-        	for (var i = 0; i < pins.length; i++)
-	        {
-	          console.log("Working on '" + pins[i][0]+ "' at (" + pins[i][2] + "," + pins[i][3] + ").");
-	          markers.push(new google.maps.Marker({
-	            position: {lat: pins[i][2], lng: pins[i][3]},
-	            icon: 'prayer.ico',
-	            animation: google.maps.Animation.DROP,
-	            map: map,
-	            title: pins[i][0],
-	            zIndex: i
-	          }));
-	        }
-        }
-
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
+		var wallaWalla = new google.maps.LatLng(46.046570, -118.390621); // (zoom 13)
+		var unitedStates = new google.maps.LatLng(38.96370424778, -98.26366787500001); //United States (Zoom 4)
+		var world = new google.maps.LatLng(9.281074119839158, 23.201175874999958);//Zoom 2
+		var map;
+		function initialize() {
+	        var styles = [
+			    {
+			      featureType: 'all',
+			      stylers: [
+			        { visibility: 'off' }
+			      ]
+			    },{
+			      featureType: 'road',
+			      elementType: 'geometry',
+			      stylers: [
+			        { saturation: -100 },
+			        { lightness: -85 },
+			        { visibility: 'on' }
+			      ]
+			    },{
+			      featureType: 'road',
+			      elementType: 'labels',
+			      stylers: [
+			        { saturation: -100 },
+			        { visibility: 'on' },
+			        { gamma: .2}
+			      ]
+			    },{
+			      featureType: 'city',
+			      elementType: 'labels',
+			      stylers: [
+			        { saturation: -100 },
+			        { visibility: 'on' }
+			      ]
+			    },{
+					featureType: 'all',
+					elementType: 'labels.text.fill',
+					stylers: [
+						{ lightness: -100 },
+						{ gamma: .01 }
+					]
+				},{
+					featureType: 'administrative',
+					elementType: 'geometry.stroke',
+					stylers: [
+						{ visibility: 'simplifed' }
+					]
+				},{
+					featureType: 'water',
+					elementType: 'geometry',
+					stylers: [
+						{ visibility: 'on' }/*,
+						{ color: '#4CCADC' },
+						{ color: '#f72635' },
+						{ lightness: 75	}*/
+					]
+				}
+			];
+	        var mapOptions = {
+	        	backgroundColor: "#FFFFFF",
+		        center: world,
+		        zoom: 3,
+		        disableDefaultUI: false,
+		        scrollwheel: false,
+		        styles: styles
+	        };
+	        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	        //Put all the pins down.
+	        setTimeout(function() {
+	        	for (var i = 0; i < pins.length; i++) {
+	        		putPin(i, i*200);
+	        	}
+	        }, 1000);
+      	}
+      	function putPin(pinNum, timeout) {
+      		window.setTimeout(function() {
+      			console.log("Working on '" + pins[pinNum][0]+ "' at (" + pins[pinNum][2] + "," + pins[pinNum][3] + ").");
+				markers.push(new google.maps.Marker({
+				position: {lat: pins[pinNum][2], lng: pins[pinNum][3]},
+				icon: 'prayer.ico',
+				animation: google.maps.Animation.DROP,
+				map: map,
+				title: pins[pinNum][0],
+				zIndex: pinNum
+				}));
+      		}, timeout);
+			
+	    }
+      	google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
   </head>
   <body>
@@ -316,8 +319,8 @@
 		    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
 		    <ul class="right hide-on-small-only">
 			    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
-			    <li class="waves-effect waves-theme-color" title="Share The Prayer"><a class="text-theme-color" href="#social">Share</a></li>
-				<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color" href="#aboutUs">About Us</a></li>
+			    <li class="waves-effect waves-theme-color" title="Share The Prayer"><a class="text-theme-color smoothScroll" href="#social">Share</a></li>
+				<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
 			    <li class="waves-effect waves-orange darken-3"><a class="text-theme-color" href="http://aswwu.com">ASWWU</a></li>
 			</ul>
 			<ul class="side-nav" id="nav-mobile">
@@ -325,8 +328,8 @@
 					<a href="#" class="brand-logo" id="logo-container"><img src="prayer-icon.png"></a>
 			    </li>
 			    <li><a class="waves-effect waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
-			    <li title="Share The Prayer"><a class="waves-effect waves-theme-color text-theme-color" href="#social">Share</a></li>
-				<li><a id="aboutUsTrigger" class="text-theme-color waves-effect waves-theme-color" href="#aboutUs">About Us</a></li>
+			    <li title="Share The Prayer"><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#social">Share</a></li>
+				<li><a id="aboutUsTrigger" class="text-theme-color waves-effect waves-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
 			    <li><a class="waves-effect waves-orange text-theme-color" href="http://aswwu.com">ASWWU</a></li>
 			</ul>
 	  </div>
@@ -399,27 +402,36 @@
 		
 	<!--prayItFoward-->
 	<div id="prayItFoward" class="modal">
-    <div class="modal-content">
+	<div class="modal-content">
 		<h3 class="center-align" >Pray It Forward</h3>
 		<div class="row">
 			<div class="col s12">
 				<ul class="tabs">
-					<li class="tab col s3"><a class="active" href="#Step1">Step 1</a></li>
+					<li class="tab col s3 active"><a class="active" href="#Step1">Step 1</a></li>
 					<li class="tab col s3"><a href="#Step2">Step 2</a></li>
 					<li class="tab col s3"><a href="#Step3">Step 3</a></li>
 					<li class="tab col s3"><a href="#Step4">Step 4</a></li>
 				</ul>
 			</div>
 			<div id="Step1" class="col s12">
-				<div class="center-align"><img src="prayer-icon.png"></div>
+				<div class="center-align"><img class="pushup-animation" src="prayer-icon.png" style="width: 200px; height: auto;"></div>
 				<h5 class="center-align">Step 1</h5>
 				<h2 class="center-align">Pray for Someone</h2>
 			</div>
-			<div id="Step2" class="col s12">Step 2</div>
+			<div id="Step2" class="col s12">
+				<div id="pin" class="pushup-animation" style="margin: auto;">
+					<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
+					<div class="verticalMagic"><input type="number" id="key_PinText"></div>
+				</div>
+				Step 2</div>
 			<div id="Step3" class="col s12">Step 3</div>
 			<div id="Step4" class="col s12">Step 4</div>
 		</div>
-
+		<div class="modal-footer">
+			<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
+			<button class="waves-effect waves-blue btn-flat">Next</button>
+			<button class="waves-effect waves-blue btn-flat">Previous</button>
+		</div>
 
 
 
@@ -448,15 +460,8 @@
 
 			</div>
 			<div class="col s12 m6">
-				<div id="pin" style="margin: auto;">
-					<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
-					<div class="verticalMagic"><input type="number" id="key_PinText"></div>
-				</div>
+				
 			</div>
-			</div>
-			<div class="modal-footer">
-			  <a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
-			  <button  class="waves-effect waves-blue btn-flat">Next</button>
 			</div>-->
 		</div>
     </div>
