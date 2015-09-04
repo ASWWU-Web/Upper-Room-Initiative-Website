@@ -28,13 +28,12 @@
   <script type="text/javascript" src="instafeed.min.js"></script>
 	<style type="text/css">
 	/*This is for the Google Map*/
-	  html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+	  html, body{ height: 100%; margin: 0; padding: 0;}
 	  .waves-effect.waves-theme-color .waves-ripple {
 	  		background-color: rgba(247, 38, 53, 1);
 	  	}
 	  	/*This is for that fancy dancy pin*/
 	  	#pin {
-			margin: 50px;
 			background-color: #f72635;
 			height: 300px;
 			width: 300px;
@@ -44,6 +43,9 @@
 			text-align: center;
 		}
 		.pushup-animation {
+			margin-top: 15px;
+			box-shadow: 0 0 20px #555;
+			border-radius: 50%;
 			-webkit-animation-name: pushup;
 			-webkit-animation-delay: 1s;
 			-webkit-animation-duration: 1s;
@@ -189,7 +191,12 @@
 		$(document).ready(function(){
 			setTimeout(function () {
 				//activate modal 
-				$('.modal-trigger').leanModal();
+				$('.modal-trigger').leanModal({
+					//Form Assistance Javascript.
+					ready: function() {$('ul.tabs').tabs('select_tab', 'Step1');
+						readyLocatorMap();
+					}
+				});
 				//Mobile menu button
 				$(".button-collapse").sideNav();
 				//Initialize marterialize "tabs" 
@@ -203,7 +210,20 @@
 				$('.smoothScroll').smoothScroll();
 			}, 1000);
 		});
-
+	</script>
+	<script type="text/javascript">
+		//script for location Selector Map.
+		var locatorMap;
+		function readyLocatorMap() {
+			console.log("making Locator Map");
+			  locatorMap = new google.maps.Map(document.getElementById('map-locationSelector'), {
+			    center: {lat: 46.046568, lng: -118.390622},
+			    zoom: 13,
+			    disableDefaultUI: true
+			  });
+		}
+	</script>
+	<script type="text/javascript">
 		//This is an array of Google markers it will be populated when the map finishes initializing. 
 		var markers = [];
 		var pins = [
@@ -219,6 +239,7 @@
 		var world = new google.maps.LatLng(9.281074119839158, 23.201175874999958);//Zoom 2
 		var map;
 		function initialize() {
+			$("#map-canvas").height($( window ).height() - $( 'nav' ).height());
 	        var styles = [
 			    {
 			      featureType: 'all',
@@ -335,7 +356,7 @@
 	  </div>
 	</nav>
 	<!--Map-->
-	<div id="map-canvas" style="width: 100%;"></div>
+	<div id="map-canvas" style="width: 100%; height: 100%;"></div>
 	<!--Counter-->
 	<div id="counter">
 		<img  src="prayer-icon.png" style="opacity: 0.7; width:70px;">
@@ -343,7 +364,7 @@
 	</div>
 	<!--Scroll Down Notifier-->
 	<div style="position: absolute; bottom:15px; right: 50%; margin-right: -75px; width: 150px; text-align: center;">
-		<a title="There's more. Scroll Down" href="#social"><i id="scrollDownArrow" class="medium material-icons">keyboard_arrow_down</i></a>
+		<a title="There's more. Scroll Down" class="smoothScroll" href="#social"><i id="scrollDownArrow" class="medium material-icons">keyboard_arrow_down</i></a>
 	</div>
 	<!--Social-->
 	<div id="social" class="row" style=" margin-bottom: 0;">
@@ -407,25 +428,38 @@
 		<div class="row">
 			<div class="col s12">
 				<ul class="tabs">
-					<li class="tab col s3 active"><a class="active" href="#Step1">Step 1</a></li>
+					<li class="tab col s3"><a class="active" href="#Step1">Step 1</a></li>
 					<li class="tab col s3"><a href="#Step2">Step 2</a></li>
 					<li class="tab col s3"><a href="#Step3">Step 3</a></li>
 					<li class="tab col s3"><a href="#Step4">Step 4</a></li>
 				</ul>
 			</div>
+			<!--Step1-->
 			<div id="Step1" class="col s12">
-				<div class="center-align"><img class="pushup-animation" src="prayer-icon.png" style="width: 200px; height: auto;"></div>
+				<div class="center-align"><img class="pushup-animation" src="prayer-icon.png" style="border-radius: 50%; width: 300px; height: auto;"></div>
 				<h5 class="center-align">Step 1</h5>
 				<h2 class="center-align">Pray for Someone</h2>
 			</div>
+			<!--Step2-->
 			<div id="Step2" class="col s12">
-				<div id="pin" class="pushup-animation" style="margin: auto;">
+
+				<div id="pin" class="pushup-animation" style="margin-right:auto; margin-left:auto;">
 					<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
 					<div class="verticalMagic"><input type="number" id="key_PinText"></div>
 				</div>
-				Step 2</div>
-			<div id="Step3" class="col s12">Step 3</div>
-			<div id="Step4" class="col s12">Step 4</div>
+				<h5 class="center-align">Step 2</h5>
+				<h2 class="center-align">What is you pin number?</h2>
+			</div>
+			<!--Step3-->
+			<div id="Step3" class="col s12">
+				<div class="center-align"><img class="pushup-animation" src="book-icon.png" style="border-radius: 50%;width: 300px; height: auto;"></div>
+				<h5 class="center-align">Step 3</h5>
+				<h2 class="center-align">Tell your Story</h2>
+			</div>
+			<!--Step4-->
+			<div id="Step4" class="col s12">
+				<div id="map-locationSelector" class=" center-align" style="height: 600px;width: 600px;"></div>
+				Step 4</div>
 		</div>
 		<div class="modal-footer">
 			<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
