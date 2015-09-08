@@ -1,208 +1,175 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!--JQuery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<!--JQuery-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-  <!--Smooth Scrolling Plugin found here https://github.com/kswedberg/jquery-smooth-scroll-->
-  <script src="jquery.smooth-scroll.js"></script>
+		<!--Smooth Scrolling Plugin found here https://github.com/kswedberg/jquery-smooth-scroll-->
+		<script src="jquery.smooth-scroll.js"></script>
 
-  <!-- Odometer includes http://github.hubspot.com/odometer/-->
-  <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-default.css" />
-  <script src="http://github.hubspot.com/odometer/odometer.js"></script>
+		<!-- Odometer includes http://github.hubspot.com/odometer/-->
+		<link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-default.css" />
+		<script src="http://github.hubspot.com/odometer/odometer.js"></script>
 
-  <!--GOOGLE ICONS-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!--GOOGLE ICONS-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+		<!-- Materialize CSS and JS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
-  <!-- Materialize JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+		<!--GoogleMaps API JS -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp?key=AIzaSyB_0k2jx_UgsRztDKNxEQWsQqzTve_8Oek"></script>
 
-  <!--GoogleMaps API JS -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp?key=AIzaSyB_0k2jx_UgsRztDKNxEQWsQqzTve_8Oek"></script>
+		<!--Instafeed js-->
+		<script type="text/javascript" src="instafeed.min.js"></script>
 
-  <!--Instafeedjs-->
-  <script type="text/javascript" src="instafeed.min.js"></script>
-  	<!--Custom CSS-->
-  	<link rel="stylesheet" href="main-css.css">
-	<script type="text/javascript" src="main-js.js"></script>
-  </head>
-  <body>
-	<nav class="white">
-	   	<div class="nav-wrapper">
-
-	   		<a href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><i class="material-icons" style="color: grey; padding-left: 10px; padding-right: 20px;">menu</i></a>
-		    <ul><li class="hide-on-med-and-down"><a href="#" class="" style="max-height:64px;"><img  src="prayer-icon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
-		    <!--Title for Large-->
-		    <li class="hide-on-med-and-down text-theme-color" style="font-size: 25px; color: #333; font-weight: 300;">The Upper Room Initiative<li>
-		    <!--Title for Med.-->
-			<li class="hide-on-small-only hide-on-large-only text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative<li>
-		    <!--Title for Small-->
-		    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
-		    <ul class="right hide-on-small-only">
-			    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
-			    <li class="waves-effect waves-theme-color" title="Share The Prayer"><a class="text-theme-color smoothScroll" href="#social">Share</a></li>
-				<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
-			    <li class="waves-effect waves-orange darken-3"><a class="text-theme-color" href="http://aswwu.com">ASWWU</a></li>
-			</ul>
-			<ul class="side-nav" id="nav-mobile">
-				<li class="logo" style="height: 150px;">
-					<a href="#" class="brand-logo" id="logo-container"><img src="prayer-icon.png"></a>
-			    </li>
-			    <li><a class="waves-effect waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
-			    <li title="Share The Prayer"><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#social">Share</a></li>
-				<li><a id="aboutUsTrigger" class="text-theme-color waves-effect waves-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
-			    <li><a class="waves-effect waves-orange text-theme-color" href="http://aswwu.com">ASWWU</a></li>
-			</ul>
-	  </div>
-	</nav>
-	<!--Map-->
-	<div id="map-canvas" style="width: 100%; height: 100%;"></div>
-	<!--Counter-->
-	<div id="counter">
-		<img  src="prayer-icon.png" style="opacity: 0.7; width:70px;">
-		<div id="odometer" class="odometer"></div>
-	</div>
-	<!--Scroll Down Notifier-->
-	<div style="position: absolute; bottom:15px; right: 50%; margin-right: -75px; width: 150px; text-align: center;">
-		<a title="There's more. Scroll Down" class="smoothScroll" href="#social"><i id="scrollDownArrow" class="medium material-icons">keyboard_arrow_down</i></a>
-	</div>
-	<!--Social-->
-	<div id="social" class="row" style=" margin-bottom: 0;">
-		<!--Instagram-->
-		<div class="col s12 m6" style="height: 100%; background-color: #ABD9FF; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
-			<img src="prayitforward.png" style="display: block; margin-top: 0; padding-top:10px; margin-left: auto; margin-right:auto;">
-			<div id="instafeed" class="" style=""></div>
-		</div>
-		<!--Facebook-->
-		<div class="col s12 m6" style="height: 100%; background-color: #7791C9; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2), 15px 0 10px -10px #ABD9FF inset;">
-			<h4 style="margin-top: 0; text-align: center;color:white;">
-				Facebook
-			</h4>
-		</div>
-	  </div>
-	<!--About Us-->
-	<div id="aboutUs" style="box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
-		<div class="container">
-			<h4 class="s12" style="margin-top:0; text-align: center;">
-				About Us
-			</h4>
-			<div class="row">
-				<div class="col s12 m4 l2" style="min-height:100%;">
-					<div class="roundTile" style="background-image: url('about1.jpg');">
-						
-					</div>
-				</div>
-				<div class="col s12 m8 l10 flow-text">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
-				</div>
-			</div>
-			<div class="row">
-				<div class="col s12 hide-on-med-and-up valign-wrapper" style="height:100%;">
-					<div class="roundTile valign" style="background-image: url('about2.jpg');">
-					</div>
-				</div>
-				<div class="col s12 m8 l10 flow-text">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
-				</div>
-				<div class="col s12 m4 l2 hide-on-small-only valign-wrapper" style="height:100%;">
-					<div class="roundTile valign" style="background-image: url('about2.jpg');">
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col s12 m4 l2" style="height:100%;">
-					<div class="roundTile" style="background-image: url('about3.jpg');">
-					</div>
-				</div>
-				<div class="col s12 m8 l10 flow-text">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
-				</div>
-			</div>
-		</div>
-	</div>
-		
-	<!--prayItFoward-->
-	<div id="prayItFoward" class="modal">
-	<div class="modal-content">
-		<h3 class="center-align" >Pray It Forward</h3>
-		<div class="row">
-			<div class="col s12">
-				<ul class="tabs">
-					<li class="tab col s3"><a class="active" href="#Step1">Step 1</a></li>
-					<li class="tab col s3"><a href="#Step2">Step 2</a></li>
-					<li class="tab col s3"><a href="#Step3">Step 3</a></li>
-					<li class="tab col s3"><a href="#Step4">Step 4</a></li>
+		<!--Custom CSS and JS-->
+		<link rel="stylesheet" href="main-css.css">
+		<script type="text/javascript" src="main-js.js"></script>
+	</head>
+	<body>
+		<nav class="white">
+		   	<div class="nav-wrapper">
+		   		<a href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><i class="material-icons" style="color: grey; padding-left: 10px; padding-right: 20px;">menu</i></a>
+			    <ul><li class="hide-on-med-and-down"><a href="#" class="" style="max-height:64px;"><img  src="prayer-icon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
+			    <!--Title for Large-->
+			    <li class="hide-on-med-and-down text-theme-color" style="font-size: 25px; color: #333; font-weight: 300;">The Upper Room Initiative<li>
+			    <!--Title for Med.-->
+				<li class="hide-on-small-only hide-on-large-only text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative<li>
+			    <!--Title for Small-->
+			    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
+			    <ul class="right hide-on-small-only">
+				    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
+				    <li class="waves-effect waves-theme-color" title="Share The Prayer"><a class="text-theme-color smoothScroll" href="#social">Share</a></li>
+					<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
+				    <li class="waves-effect waves-orange darken-3"><a class="text-theme-color" href="http://aswwu.com">ASWWU</a></li>
+				</ul>
+				<ul class="side-nav" id="nav-mobile">
+					<li class="logo" style="height: 150px;">
+						<a href="#" class="brand-logo" id="logo-container"><img src="prayer-icon.png"></a>
+				    </li>
+				    <li><a class="waves-effect waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
+				    <li title="Share The Prayer"><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#social">Share</a></li>
+					<li><a id="aboutUsTrigger" class="text-theme-color waves-effect waves-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
+				    <li><a class="waves-effect waves-orange text-theme-color" href="http://aswwu.com">ASWWU</a></li>
 				</ul>
 			</div>
-			<!--Step1-->
-			<div id="Step1" class="col s12">
-				<div class="center-align"><img class="pushup-animation" src="prayer-icon.png"></div>
-				<h5 class="center-align">Step 1</h5>
-				<h2 class="center-align">Pray for Someone</h2>
-			</div>
-			<!--Step2-->
-			<div id="Step2" class="col s12">
-
-				<div id="pin" class="pushup-animation" style="margin-right:auto; margin-left:auto;">
-					<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
-					<div class="verticalMagic"><input value="*****" id="key_PinText"></div>
-				</div>
-				<h5 class="center-align">Step 2</h5>
-				<h2 class="center-align">What is you pin number?</h2>
-			</div>
-			<!--Step3-->
-			<div id="Step3" class="col s12">
-				<div class="center-align"><img class="pushup-animation" src="book-icon.png" ></div>
-				<h5 class="center-align">Step 3</h5>
-				<h2 class="center-align">Tell your Story</h2>
-			</div>
-			<!--Step4-->
-			<div id="Step4" class="col s12">
-				<div id="locationMap" class="pushup-animation" style="height: 150px; width: 150px; margin-left:auto; margin-right: auto;"></div>
-				<h5 class="center-align">Step 4</h5>
-				<h2 class="center-align">Where are you located</h2></div>
+		</nav>
+		<!--Map-->
+		<div id="map-canvas" style="width: 100%; height: 100%;"></div>
+		<!--Counter-->
+		<div id="counter">
+			<img  src="prayer-icon.png" style="opacity: 0.7; width:70px;">
+			<div id="odometer" class="odometer"></div>
 		</div>
-		<div class="modal-footer">
-			<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
-			<button class="waves-effect waves-blue btn-flat">Next</button>
-			<button class="waves-effect waves-blue btn-flat">Previous</button>
+		<!--Scroll Down Notifier-->
+		<div style="position: absolute; bottom:15px; right: 50%; margin-right: -75px; width: 150px; text-align: center;">
+			<a title="There's more. Scroll Down" class="smoothScroll" href="#social"><i id="scrollDownArrow" class="medium material-icons">keyboard_arrow_down</i></a>
 		</div>
-
-
-
-			<!--Right Half-->
-			<!--<div class="col s12 m6">
+		<!--Social-->
+		<div id="social" class="row" style=" margin-bottom: 0;">
+			<!--Instagram-->
+			<div class="col s12 m6" style="height: 100%; background-color: #ABD9FF; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
+				<img src="prayitforward.png" style="display: block; margin-top: 0; padding-top:10px; margin-left: auto; margin-right:auto;">
+				<div id="instafeed" class="" style=""></div>
+			</div>
+			<!--Facebook-->
+			<div class="col s12 m6" style="height: 100%; background-color: #7791C9; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2), 15px 0 10px -10px #ABD9FF inset;">
+				<h4 style="margin-top: 0; text-align: center;color:white;">
+					Facebook
+				</h4>
+			</div>
+		</div>
+		<!--About Us-->
+		<div id="aboutUs" style="box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
+			<div class="container">
+				<h4 class="s12" style="margin-top:0; text-align: center;">
+					About Us
+				</h4>
 				<div class="row">
-					<div class="input-field col s12 m6">
-					  <input id="first_name" type="text" class="validate">
-					  <label for="first_name">First Name</label>
+					<div class="col s12 m4 l2" style="min-height:100%;">
+						<div class="roundTile" style="background-image: url('about1.jpg');">
+							
+						</div>
 					</div>
-					<div class="input-field col s12 m6">
-					  <input id="last_name" type="text" class="validate">
-					  <label for="last_name">Last Name</label>
+					<div class="col s12 m8 l10 flow-text">
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
 					</div>
 				</div>
-				<div class="input-field">
-					
-					<div class="col s12 m6">
-						<input id="location" type="text">
-						<label for="location">Location</label>
+				<div class="row">
+					<div class="col s12 hide-on-med-and-up valign-wrapper" style="height:100%;">
+						<div class="roundTile valign" style="background-image: url('about2.jpg');">
+						</div>
 					</div>
-					<i class="material-icons tooltipped prefix color-grey" data-position="bottom" data-delay="50" data-tooltip="Address, Zip-code, or City Name">info_outline</i>
+					<div class="col s12 m8 l10 flow-text">
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+					</div>
+					<div class="col s12 m4 l2 hide-on-small-only valign-wrapper" style="height:100%;">
+						<div class="roundTile valign" style="background-image: url('about2.jpg');">
+						</div>
+					</div>
 				</div>
-
-				<br>
-
+				<div class="row">
+					<div class="col s12 m4 l2" style="height:100%;">
+						<div class="roundTile" style="background-image: url('about3.jpg');">
+						</div>
+					</div>
+					<div class="col s12 m8 l10 flow-text">
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+					</div>
+				</div>
 			</div>
-			<div class="col s12 m6">
-				
-			</div>
-			</div>-->
 		</div>
-    </div>
-  </body>
+			
+		<!--prayItFoward-->
+		<div id="prayItFoward" class="modal">
+			<div class="modal-content">
+				<h3 class="center-align" >Pray It Forward</h3>
+				<div class="row">
+					<div class="col s12">
+						<ul class="tabs">
+							<li class="tab col s3"><a class="active" href="#Step1">Step 1</a></li>
+							<li class="tab col s3"><a href="#Step2">Step 2</a></li>
+							<li class="tab col s3"><a href="#Step3">Step 3</a></li>
+							<li class="tab col s3"><a href="#Step4">Step 4</a></li>
+						</ul>
+					</div>
+					<!--Step1-->
+					<div id="Step1" class="col s12">
+						<div class="center-align"><img class="pushup-animation" src="prayer-icon.png"></div>
+						<h5 class="center-align">Step 1</h5>
+						<h2 class="center-align">Pray for Someone</h2>
+					</div>
+					<!--Step2-->
+					<div id="Step2" class="col s12">
+
+						<div id="pin" class="pushup-animation" style="margin-right:auto; margin-left:auto;">
+							<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
+							<div class="verticalMagic"><input value="*****" id="key_PinText"></div>
+						</div>
+						<h5 class="center-align">Step 2</h5>
+						<h2 class="center-align">What is you pin number?</h2>
+					</div>
+					<!--Step3-->
+					<div id="Step3" class="col s12">
+						<div class="center-align"><img class="pushup-animation" src="book-icon.png" ></div>
+						<h5 class="center-align">Step 3</h5>
+						<h2 class="center-align">Tell your Story</h2>
+					</div>
+					<!--Step4-->
+					<div id="Step4" class="col s12">
+						<div id="locationMap" class="pushup-animation" style="height: 150px; width: 150px; margin-left:auto; margin-right: auto;"></div>
+						<h5 class="center-align">Step 4</h5>
+						<h2 class="center-align">Where are you located</h2></div>
+				</div>
+				<div class="modal-footer">
+					<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
+					<button class="waves-effect waves-blue btn-flat">Next</button>
+					<button class="waves-effect waves-blue btn-flat">Previous</button>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

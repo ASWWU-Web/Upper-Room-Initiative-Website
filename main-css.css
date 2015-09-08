@@ -2,9 +2,9 @@
 html, body, #map-locationSelector { height: 100%; margin: 0; padding: 0; }
 .waves-effect.waves-theme-color .waves-ripple {
 		background-color: rgba(247, 38, 53, 1);
-	}
-	/*This is for that fancy dancy pin*/
-	#pin {
+}
+/*This is for that fancy dancy pin*/
+#pin {
 	background-color: #f72635;
 	box-shadow: 0 0 20px #555;
 	border-radius: 50%;
