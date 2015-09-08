@@ -1,0 +1,125 @@
+/*This is for the Google Map*/
+html, body, #map-locationSelector { height: 100%; margin: 0; padding: 0; }
+.waves-effect.waves-theme-color .waves-ripple {
+		background-color: rgba(247, 38, 53, 1);
+	}
+	/*This is for that fancy dancy pin*/
+	#pin {
+	background-color: #f72635;
+	box-shadow: 0 0 20px #555;
+	border-radius: 50%;
+	transition: all .2s;
+	text-align: center;
+}
+.pushup-animation {
+	position: relative;
+	margin-top: 15px;
+	box-shadow: 0 0 20px #555;
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	-webkit-animation-name: pushup;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: ease-in-out;
+	animation-name: pushup;
+	animation-delay: 1s;
+	animation-duration: .5s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+}
+@-webkit-keyframes pushup {
+	from {}
+	to {
+	-ms-transform: translate(0,-10px); /* IE 9 */
+    -webkit-transform: translate(0,-10px); /* Safari */
+    transform: translate(0, -10px); /* Standard syntax */
+    box-shadow: 0 20px 20px #555;
+	}
+}
+@keyframes pushup {
+	from {}
+	to {
+	-ms-transform: translate(0,-10px); /* IE 9 */
+    -webkit-transform: translate(0,-10px); /* Safari */
+    transform: translate(0, -10px); /* Standard syntax */
+    box-shadow: 0 20px 20px #555;
+	}
+}
+.verticalMagic {
+	position: relative;
+	top: 25%;
+	-webkit-transform: translateY(-25%);
+	-ms-transform: translateY(-25%);
+	transform: translateY(-25%);
+}
+#pinText {
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	font-size: 15px;
+}
+#key_PinText {
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color: white;
+	width: 50px;
+	height: 15px;
+	border-radius: 15px;
+	position: relative;
+	border: none;
+	box-shadow: 0 5px 20px rgba(0,0,0,.2);
+}
+/*This is to change the text color*/
+.text-theme-color {
+	color: black;
+}
+/*Resizes and circulizes an image or div*/
+.roundTile {
+	border-radius: 50%;
+	height: 150px;
+	width: 150px;
+	background-size: 150px 150px;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*CSS For the Prayer Counter*/
+#counter {
+	position: absolute;
+	z-index: 100; top: 50%;
+	left: 50%;
+	margin-left: -158.5px;
+	margin-top:-75px;
+	font-size: 100px;
+}
+/*CSS and animaitions for the Scroll down arrow above the map*/
+#scrollDownArrow {
+	color: black;
+	animation-name: bob;
+	animation-duration: 2s;
+	animation-iteration-count: 3;
+	animation-delay: 4s;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-name: bob;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: 3;
+	-webkit-animation-delay: 4s;
+}
+@keyframes bob {
+	0%{}
+	16%{transform: translateY(10px);}
+	32%{transform: translateY(0px);}
+	48%{transform: translateY(10px);}
+	64%{transform: translateY(0px);}
+	100%{transform: translateY(0px);}
+}
+@-webkit-keyframes bob {
+	0%{}
+	16%{transform: translateY(10px);}
+	32%{transform: translateY(0px);}
+	48%{transform: translateY(10px);}
+	64%{transform: translateY(0px);}
+	100%{transform: translateY(0px);}
+}

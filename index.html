@@ -5,7 +5,7 @@
   <!--JQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-  <!--Smooth Scrolling Plugin find here https://github.com/kswedberg/jquery-smooth-scroll-->
+  <!--Smooth Scrolling Plugin found here https://github.com/kswedberg/jquery-smooth-scroll-->
   <script src="jquery.smooth-scroll.js"></script>
 
   <!-- Odometer includes http://github.hubspot.com/odometer/-->
@@ -15,10 +15,10 @@
   <!--GOOGLE ICONS-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Compiled and minified CSS -->
+  <!-- Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 
-  <!-- Compiled and minified JavaScript -->
+  <!-- Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
   <!--GoogleMaps API JS -->
@@ -26,337 +26,9 @@
 
   <!--Instafeedjs-->
   <script type="text/javascript" src="instafeed.min.js"></script>
-	<style type="text/css">
-	/*This is for the Google Map*/
-	  html, body, #map-locationSelector { height: 100%; margin: 0; padding: 0; }
-	  .waves-effect.waves-theme-color .waves-ripple {
-	  		background-color: rgba(247, 38, 53, 1);
-	  	}
-	  	/*This is for that fancy dancy pin*/
-	  	#pin {
-			background-color: #f72635;
-			box-shadow: 0 0 20px #555;
-			border-radius: 50%;
-			transition: all .2s;
-			text-align: center;
-		}
-		.pushup-animation {
-		  position: relative;
-			margin-top: 15px;
-			box-shadow: 0 0 20px #555;
-			border-radius: 50%;
-			width: 150px;
-			height: 150px;
-			-webkit-animation-name: pushup;
-			-webkit-animation-delay: 1s;
-			-webkit-animation-duration: 1s;
-			-webkit-animation-timing-function: ease-in-out;
-			animation-name: pushup;
-			animation-delay: 1s;
-			animation-duration: .5s;
-			animation-timing-function: ease-in-out;
-			animation-fill-mode: forwards;
-		}
-		@-webkit-keyframes pushup {
-			from {}
-			to {
-			-ms-transform: translate(0,-10px); /* IE 9 */
-		    -webkit-transform: translate(0,-10px); /* Safari */
-		    transform: translate(0, -10px); /* Standard syntax */
-		    box-shadow: 0 20px 20px #555;
-			}
-		}
-		@keyframes pushup {
-			from {}
-			to {
-			-ms-transform: translate(0,-10px); /* IE 9 */
-		    -webkit-transform: translate(0,-10px); /* Safari */
-		    transform: translate(0, -10px); /* Standard syntax */
-		    box-shadow: 0 20px 20px #555;
-			}
-		}
-		.verticalMagic {
-			position: relative;
-			top: 25%;
-			-webkit-transform: translateY(-25%);
-			-ms-transform: translateY(-25%);
-			transform: translateY(-25%);
-		}
-		#pinText {
-			font-family: 'Roboto', sans-serif;
-			color: white;
-			font-size: 15px;
-		}
-		#key_PinText {
-			font-size: 15px;
-			margin-left: auto;
-			margin-right: auto;
-			text-align: center;
-			background-color: white;
-			width: 50px;
-			height: 15px;
-			border-radius: 15px;
-			position: relative;
-			border: none;
-			box-shadow: 0 5px 20px rgba(0,0,0,.2);
-		}
-		/*This is to change the text color*/
-		.text-theme-color {
-			color: black;
-		}
-		/*Resizes and circulizes an image or div*/
-		.roundTile {
-			border-radius: 50%;
-			height: 150px;
-			width: 150px;
-			background-size: 150px 150px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		/*CSS For the Prayer Counter*/
-		#counter {
-			position: absolute;
-			z-index: 100; top: 50%;
-			left: 50%;
-			margin-left: -158.5px;
-			margin-top:-75px;
-			font-size: 100px;
-		}
-		/*CSS and animaitions for the Scroll down arrow above the map*/
-		#scrollDownArrow {
-			color: black;
-			animation-name: bob;
-    		animation-duration: 2s;
-    		animation-iteration-count: 3;
-    		animation-delay: 4s;
-    		animation-timing-function: ease-in-out;
-    		-webkit-animation-name: bob;
-    		-webkit-animation-duration: 2s;
-    		-webkit-animation-iteration-count: infinite;
-    		-webkit-animation-iteration-count: 3;
-    		-webkit-animation-delay: 4s;
-		}
-		@keyframes bob {
-			0%{}
-			16%{transform: translateY(10px);}
-			32%{transform: translateY(0px);}
-			48%{transform: translateY(10px);}
-			64%{transform: translateY(0px);}
-			100%{transform: translateY(0px);}
-		}
-		@-webkit-keyframes bob {
-			0%{}
-			16%{transform: translateY(10px);}
-			32%{transform: translateY(0px);}
-			48%{transform: translateY(10px);}
-			64%{transform: translateY(0px);}
-			100%{transform: translateY(0px);}
-		}
-		/*CSS for Locator Map Hover*/
-		#locationMapContainer:hover {
-		  width: 100%;
-		  height:300px;
-		  background-color: blue;
-		  border-radius:5px;
-		  transition: all .5s ease-in-out;
-		  overflow: hidden;
-		  position: static;
-		}
-	</style>
-	<!--Script for #PrayItFoward-->
-	<script type="text/javascript">
-	    var feed = new Instafeed({
-	        get: 'tagged',
-	        tagName: 'prayitforward',
-	        clientId: '5706aa1ac7e84d609a8fd426259749be',
-	        limit: 12,
-	        //Sorry this has to be a single line. :( Turn word wrap on and you'll be fine.
-	        template: '<div class="col s6 m6 l4"><div class="card hoverable"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><br><a target="_blank" href="{{link}}" style="color:black;"><b>{{model.user.full_name}}</b></a><p>{{caption}}<br><a href="{{link}}" target="_blank">See post in context.</a></p></div></div></div>',
-	        sortBy: 'most-recent',
-	        resolution: 'low_resolution'
-	    });
-		setTimeout(function(){
-			feed.run();
-		}, 2000);
-	</script>
-	<!--Startup Script for Prayer Counter-->
-	<script type="text/javascript">
-		$('#odometer').ready(function(){
-			var count = 163;
-			var selector = document.querySelector('#odometer');
-			odometer = new Odometer({
-				el: selector,
-				value: 0,
-				duration: 3000,
-				format: ''
-			});
-			odometer.update(count);
-			setInterval(function(){
-				count ++;
-				odometer.update(count);
-			}, 3000);
-		});
-	</script>
-	<script type="text/javascript">
-		//Materialize and smooth scroll initializations
-		$(document).ready(function(){
-			setTimeout(function () {
-				//activate modal
-				$('.modal-trigger').leanModal({
-					//Form Assistance Javascript.
-					ready: function() {
-					  $('ul.tabs').tabs('select_tab', 'Step1');
-					  //checkMapVisible();
-					}
-				});
-				//Mobile menu button
-				$(".button-collapse").sideNav();
-				//Initialize marterialize "tabs"
-				$('ul.tabs').tabs();
-				//This is supposed to make the map occupy 100% of the window and nothing more
-				//but it doesn't seem work without the height 100%. :(
-				//$('.map-canvas').height($(window).height( ) - 64);
-				//This is for smooth scrolling.
-				//Smooth Scrolling interferes with Materiaz's close modal HTML method.
-				//FIXED-Make sure any close buttons don't have a href atribute specified.
-				$('.smoothScroll').smoothScroll();
-			}, 1000);
-		});
-	</script>
-	<script type="text/javascript">
-		//script for location Selector Map.
-		var locatorMap;
-		var locatorMarker;
-		var latLng = {lat: 46.046570,lng: -118.390621};
-		//This function initializes the map once it it actually visible.
-		//  Aparently the maps don't like to be initialized while they are hidden.
-	  function checkMapVisible() {
-	    var interval = setInterval(function () {
-      if($('#locationMap').is(':visible')) {
-        // visible, do something
-        clearInterval(interval);
-        readyLocatorMap();
-      }
-    }, 200);
-	  }
-    
-		function readyLocatorMap() {
-			console.log("making Locator Map");
-		  var mapOptions = {
-      	backgroundColor: "#FFF",
-        center: latLng,
-        zoom: 14,
-        disableDefaultUI: true,
-        scrollwheel: false
-      };
-      locatorMap = new google.maps.Map(document.getElementById('locationMap'), mapOptions);
-      locatorMarker = new google.maps.Marker({
-        position: latLng,
-        map: locatorMap,
-        draggable: true,
-        title: "Your Choosen Location"
-      });
-		}
-	</script>
-	<script type="text/javascript">
-		//This is an array of Google markers it will be populated when the map finishes initializing.
-		var markers = [];
-		var pins = [
-		["Home!","Walla Walla University", 46.046568, -118.390622],
-		["Fred","School's tuff!", 46.047782, -118.340123],
-		["George","Things don't allways go as planned.", 46.041486, -118.398145],
-		["Allisyn","Why do bad things happen.", 46.046632, -118.391521],
-		["Bob","Why is life in general hard to cope with.", 46.041023, -118.393452],
-		["Brittney","My grandma is going through tuff times.", 46.046781, -118.398952]
-		];
-		var wallaWalla = new google.maps.LatLng(46.046570, -118.390621); // (zoom 13)
-		var unitedStates = new google.maps.LatLng(38.96370424778, -98.26366787500001); //United States (Zoom 4)
-		var world = new google.maps.LatLng(9.281074119839158, 23.201175874999958);//Zoom 2
-		var map;
-		function initialize() {
-			$("#map-canvas").height($( window ).height() - $( 'nav' ).height());
-	        var styles = [
-			    {
-			      featureType: 'all',
-			      stylers: [
-			        { visibility: 'off' }
-			      ]
-			    },{
-			      featureType: 'road',
-			      elementType: 'geometry',
-			      stylers: [
-			        { saturation: -100 },
-			        { lightness: -85 },
-			        { visibility: 'on' }
-			      ]
-			    },{
-			      featureType: 'road',
-			      elementType: 'labels',
-			      stylers: [
-			        { saturation: -100 },
-			        { visibility: 'on' },
-			        { gamma: .2}
-			      ]
-			    },{
-			      featureType: 'city',
-			      elementType: 'labels',
-			      stylers: [
-			        { saturation: -100 },
-			        { visibility: 'on' }
-			      ]
-			    },{
-					featureType: 'all',
-					elementType: 'labels.text.fill',
-					stylers: [
-						{ lightness: -100 },
-						{ gamma: .01 }
-					]
-				},{
-					featureType: 'administrative',
-					elementType: 'geometry.stroke',
-					stylers: [
-						{ visibility: 'simplifed' }
-					]
-				},{
-					featureType: 'water',
-					elementType: 'geometry',
-					stylers: [
-						{ visibility: 'on' }
-					]
-				}
-			];
-	        var mapOptions = {
-	        	backgroundColor: "#FFFFFF",
-		        center: world,
-		        zoom: 3,
-		        disableDefaultUI: false,
-		        scrollwheel: false,
-		        styles: styles
-	        };
-	        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	        //Put all the pins down.
-	        setTimeout(function() {
-	        	for (var i = 0; i < pins.length; i++) {
-	        		putPin(i, i*200);
-	        	}
-	        }, 1000);
-      	}
-      	function putPin(pinNum, timeout) {
-      		window.setTimeout(function() {
-      			console.log("Working on '" + pins[pinNum][0]+ "' at (" + pins[pinNum][2] + "," + pins[pinNum][3] + ").");
-				markers.push(new google.maps.Marker({
-				position: {lat: pins[pinNum][2], lng: pins[pinNum][3]},
-				icon: 'prayer.ico',
-				animation: google.maps.Animation.DROP,
-				map: map,
-				title: pins[pinNum][0],
-				zIndex: pinNum
-				}));
-      		}, timeout);
-			
-	    }
-      	google.maps.event.addDomListener(window, 'load', initialize);
-	</script>
+  	<!--Custom CSS-->
+  	<link rel="stylesheet" href="main-css.css">
+	<script type="text/javascript" src="main-js.js"></script>
   </head>
   <body>
 	<nav class="white">
@@ -490,8 +162,9 @@
 			</div>
 			<!--Step4-->
 			<div id="Step4" class="col s12">
-				<div id="locationMapContainer" class="center-align pushup-animation"><div id="locationMap" style="height: 300px; width: 500px;background-color: red; "></div></div>
-				Step 4</div>
+				<div id="locationMap" class="pushup-animation" style="height: 150px; width: 150px; margin-left:auto; margin-right: auto;"></div>
+				<h5 class="center-align">Step 4</h5>
+				<h2 class="center-align">Where are you located</h2></div>
 		</div>
 		<div class="modal-footer">
 			<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
