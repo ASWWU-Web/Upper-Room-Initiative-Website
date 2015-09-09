@@ -27,7 +27,7 @@ function initializeTheRest() {
 	//facebook
 	facebook();
 }
-//Delaration for instafeed. 
+//Delaration for instafeed.
 var feed = new Instafeed({
     get: 'tagged',
     tagName: 'prayitforward',
@@ -199,7 +199,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //google.maps.event.addListener(map, 'tilesloaded', initializeTheRest());
 
 
-//Facebook JS 
+//Facebook JS
 function facebook() {
 	console.log("Starting Facebook");
 	(function(d, s, id) {

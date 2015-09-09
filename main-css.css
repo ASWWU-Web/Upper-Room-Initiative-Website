@@ -1,8 +1,8 @@
 /*This is for the Google Map
   Don't actually need this but it makes the page load look a bit better.
   You don't see the unloaded instagram and facebook feeds before the javascript kicks in.*/
-html, body, #map-locationSelector { 
-	height: 100%; margin: 0; padding: 0; 
+html, body, #map-locationSelector {
+	height: 100%; margin: 0; padding: 0;
 }
 .waves-effect.waves-theme-color .waves-ripple {
 		background-color: rgba(247, 38, 53, 1);
@@ -14,6 +14,8 @@ html, body, #map-locationSelector {
 	border-radius: 50%;
 	transition: all .2s;
 	text-align: center;
+	width:150px;
+	height:150px;
 }
 .pushup-animation {
 	position: relative;
@@ -128,6 +130,6 @@ html, body, #map-locationSelector {
 	64%{transform: translateY(0px);}
 	100%{transform: translateY(0px);}
 }
-#instafeed::-webkit-scrollbar { 
-    display: none; 
+#instafeed::-webkit-scrollbar {
+    display: none;
 }
