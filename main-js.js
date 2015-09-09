@@ -1,5 +1,7 @@
 //Function that runs after map loads
 function initializeTheRest() {
+	console.log("removing Event Listener");
+	google.maps.event.clearInstanceListeners(map);
 	console.log("initializing the rest");
 	//start counter
 	startCounter();
@@ -49,7 +51,7 @@ function startCounter() {
 		duration: 3000,
 		format: ''
 	});
-	$('#counter').animate({opacity:1}, 600);
+	$('#counter').animate({opacity:1}, 1000);
 	odometer.update(count);
 	setInterval(function(){
 		count ++;

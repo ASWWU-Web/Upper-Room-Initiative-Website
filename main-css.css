@@ -1,5 +1,9 @@
-/*This is for the Google Map*/
-html, body, #map-locationSelector { height: 100%; margin: 0; padding: 0; }
+/*This is for the Google Map
+  Don't actually need this but it makes the page load look a bit better.
+  You don't see the unloaded instagram and facebook feeds before the javascript kicks in.*/
+html, body, #map-locationSelector { 
+	height: 100%; margin: 0; padding: 0; 
+}
 .waves-effect.waves-theme-color .waves-ripple {
 		background-color: rgba(247, 38, 53, 1);
 }
