@@ -1,4 +1,31 @@
-//Startup Script for Prayer Counter
+//Function that runs after map loads
+function initializeTheRest() {
+	console.log("initializing the rest");
+	//start counter
+	startCounter();
+	//activate modal
+	$('.modal-trigger').leanModal({
+		//Form Assistance Javascript.
+		ready: function() {
+		  $('ul.tabs').tabs('select_tab', 'Step1');
+		  checkMapVisible();
+		}
+	});
+	//Mobile menu button
+	$(".button-collapse").sideNav();
+	//Initialize marterialize "tabs"
+	$('ul.tabs').tabs();
+	//This is for smooth scrolling.
+	//Smooth Scrolling interferes with Materiaz's close modal HTML method.
+	//FIXED-Make sure any link you want to smoothly scroll has .smoothScroll class.
+	$('.smoothScroll').smoothScroll();
+	//instafeed
+	console.log("starting Instafeed");
+	feed.run();
+	//facebook
+	facebook();
+}
+//Delaration for instafeed. 
 var feed = new Instafeed({
     get: 'tagged',
     tagName: 'prayitforward',
@@ -9,12 +36,11 @@ var feed = new Instafeed({
     sortBy: 'most-recent',
     resolution: 'low_resolution'
 });
-setTimeout(function(){
-	feed.run();
-}, 2000);
+
 
 //Startup Script for Prayer Counter
-$('#odometer').ready(function(){
+function startCounter() {
+	console.log("Starting counter");
 	var count = 163;
 	var selector = document.querySelector('#odometer');
 	odometer = new Odometer({
@@ -23,37 +49,15 @@ $('#odometer').ready(function(){
 		duration: 3000,
 		format: ''
 	});
+	$('#counter').animate({opacity:1}, 600);
 	odometer.update(count);
 	setInterval(function(){
 		count ++;
 		odometer.update(count);
 	}, 3000);
-});
+}
 
-//Materialize and smooth scroll initializations
-$(document).ready(function(){
-	setTimeout(function () {
-		//activate modal
-		$('.modal-trigger').leanModal({
-			//Form Assistance Javascript.
-			ready: function() {
-			  $('ul.tabs').tabs('select_tab', 'Step1');
-			  checkMapVisible();
-			}
-		});
-		//Mobile menu button
-		$(".button-collapse").sideNav();
-		//Initialize marterialize "tabs"
-		$('ul.tabs').tabs();
-		//This is supposed to make the map occupy 100% of the window and nothing more
-		//but it doesn't seem work without the height 100%. :(
-		//$('.map-canvas').height($(window).height( ) - 64);
-		//This is for smooth scrolling.
-		//Smooth Scrolling interferes with Materiaz's close modal HTML method.
-		//FIXED-Make sure any close buttons don't have a href atribute specified.
-		$('.smoothScroll').smoothScroll();
-	}, 1000);
-});
+
 
 //Script for location selector map
 var locatorMap;
@@ -76,8 +80,7 @@ function readyLocatorMap() {
 		backgroundColor: "#FFF",
 		center: latLng,
 		zoom: 14,
-		disableDefaultUI: true,
-		scrollwheel: false
+		disableDefaultUI: true
 	};
 	locatorMap = new google.maps.Map(document.getElementById('locationMap'), mapOptions);
 	locatorMarker = new google.maps.Marker({
@@ -87,6 +90,7 @@ function readyLocatorMap() {
 		title: "Your Choosen Location"
 	});
 }
+
 //This is an array of Google markers it will be populated when the map finishes initializing.
 var markers = [];
 var pins = [
@@ -102,6 +106,7 @@ var unitedStates = new google.maps.LatLng(38.96370424778, -98.26366787500001); /
 var world = new google.maps.LatLng(9.281074119839158, 23.201175874999958);//Zoom 2
 var map;
 function initialize() {
+	console.log("Making Map");
 	$("#map-canvas").height($( window ).height() - $( 'nav' ).height());
     var styles = [
 	    {
@@ -162,6 +167,11 @@ function initialize() {
         styles: styles
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    map.addListener('tilesloaded',function() {
+    	console.log("Starting Intitialize");
+    	initializeTheRest();
+    });
+    //initializeTheRest();
     //Put all the pins down.
     setTimeout(function() {
     	for (var i = 0; i < pins.length; i++) {
@@ -169,6 +179,7 @@ function initialize() {
     	}
     }, 1000);
 }
+
 function putPin(pinNum, timeout) {
 	window.setTimeout(function() {
 		console.log("Working on '" + pins[pinNum][0]+ "' at (" + pins[pinNum][2] + "," + pins[pinNum][3] + ").");
@@ -183,3 +194,17 @@ function putPin(pinNum, timeout) {
 	}, timeout);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addListener(map, 'tilesloaded', initializeTheRest());
+
+
+//Facebook JS 
+function facebook() {
+	console.log("Starting Facebook");
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+}

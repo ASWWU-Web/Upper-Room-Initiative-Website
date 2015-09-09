@@ -30,6 +30,7 @@
 		<script type="text/javascript" src="main-js.js"></script>
 	</head>
 	<body>
+		<div id="fb-root"></div>
 		<nav class="white">
 		   	<div class="nav-wrapper">
 		   		<a href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><i class="material-icons" style="color: grey; padding-left: 10px; padding-right: 20px;">menu</i></a>
@@ -69,17 +70,19 @@
 			<a title="There's more. Scroll Down" class="smoothScroll" href="#social"><i id="scrollDownArrow" class="medium material-icons">keyboard_arrow_down</i></a>
 		</div>
 		<!--Social-->
-		<div id="social" class="row" style=" margin-bottom: 0;">
+		<div id="social" class="row" style="height: 100%; margin-bottom: 0;">
 			<!--Instagram-->
-			<div class="col s12 m6" style="height: 100%; background-color: #ABD9FF; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
-				<img src="prayitforward.png" style="display: block; margin-top: 0; padding-top:10px; margin-left: auto; margin-right:auto;">
-				<div id="instafeed" class="" style=""></div>
+			<div class="col s12 m6" style="padding-right: 0; height: 100%; background-color: #ABD9FF; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
+				
+				<div id="instafeed" class="" style="overflow: auto; height: 100%"><img src="prayitforward.png" style="display: block; margin-top: 0; padding-top:10px; margin-left: auto; margin-right:auto;"></div>
 			</div>
 			<!--Facebook-->
-			<div class="col s12 m6" style="height: 100%; background-color: #7791C9; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2), 15px 0 10px -10px #ABD9FF inset;">
-				<h4 style="margin-top: 0; text-align: center;color:white;">
+			<div class="col s12 m6" style="height: 100%; background-color: #7791C9; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2)">
+				<!--<h4 style="margin-top: 0; text-align: center;color:white;">
 					Facebook
-				</h4>
+				</h4>-->
+				<img src="facebook-logo.png" style="height: 60px; display: block; margin-top: 0; padding-top:10px; margin-left: auto; margin-right:auto;">
+				<div class="fb-page" data-href="https://www.facebook.com/facebook" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
 			</div>
 		</div>
 		<!--About Us-->
@@ -162,7 +165,7 @@
 					<div id="Step4" class="col s12">
 						<div id="locationMap" class="pushup-animation" style="height: 150px; width: 150px; margin-left:auto; margin-right: auto;"></div>
 						<h5 class="center-align">Step 4</h5>
-						<h2 class="center-align">Where are you located</h2></div>
+						<h2 class="center-align">Where are you located?</h2></div>
 				</div>
 				<div class="modal-footer">
 					<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
