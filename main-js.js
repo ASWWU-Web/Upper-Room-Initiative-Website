@@ -26,6 +26,8 @@ function initializeTheRest() {
 	feed.run();
 	//facebook
 	facebook();
+	//Twiter Tweet Button Magic (TBH It really doesn't do anything)
+	//!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 }
 //Delaration for instafeed.
 var feed = new Instafeed({
@@ -65,19 +67,20 @@ function startCounter() {
 var locatorMap;
 var locatorMarker;
 var latLng = {lat: 46.046570,lng: -118.390621};
+var locatorMapInitialized = false;
 //This function initializes the map once it it actually visible.
 //  Aparently the maps don't like to be initialized while they are hidden.
 function checkMapVisible() {
 	var interval = setInterval(function () {
-	  if($('#locationMap').is(':visible')) {
-	    // visible, do something
+	  if($('#locationMap').is(':visible') && !locatorMapInitialized) {
 	    clearInterval(interval);
+	    locatorMapInitialized = true;
 	    readyLocatorMap();
 	  }
 	}, 200);
 }
 function readyLocatorMap() {
-	console.log("making Locator Map");
+	console.log("readying Locator Map & Geocoding");
 	var mapOptions = {
 		backgroundColor: "#FFF",
 		center: latLng,
@@ -91,6 +94,22 @@ function readyLocatorMap() {
 		draggable: true,
 		title: "Your Choosen Location"
 	});
+	//Geocoding Initialization
+	var geocoder = new google.maps.Geocoder();
+	var locatorTimeout;
+	//DOM Listener for Geocoding
+	/*document.getElementById('location').addEventListener('oninput', function() {
+		console.log("Geocoding");
+		$('#locationStatus').html("Checking...");
+		clearTimeout(locatorTimeout);
+		locatorTimeout = setTimeout(function() {
+			geocodeLocation(geocoder, locatorMap);
+		}, 2000);
+  	});*/
+}
+//This is the Geocoding Query function API Thingy :)
+function geocodeLocation(geocoder, resultsMap) {
+
 }
 
 //This is an array of Google markers it will be populated when the map finishes initializing.

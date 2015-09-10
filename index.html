@@ -20,7 +20,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
 		<!--GoogleMaps API JS -->
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp?key=AIzaSyB_0k2jx_UgsRztDKNxEQWsQqzTve_8Oek"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_0k2jx_UgsRztDKNxEQWsQqzTve_8Oek"
+  type="text/javascript"></script>
 
 		<!--Instafeed js-->
 		<script type="text/javascript" src="instafeed.min.js"></script>
@@ -148,31 +149,40 @@
 					<div id="Step2" class="col s12">
 						<h5 class="center-align">Tell Us About Yourself</h5>
 						<div class="row">
-							<!--Right Half-->
+							<!--1st Col-->
 							<div class="col s12 m6">
 								<!--1st Line-->
 								<div class="row" style="margin-bottom:0px;">
 									<!--Visitor's Name-->
 									<div class="input-field col s12 m6">
-									  <input id="userName" type="text" class="validate" autofocus>
-									  <label for="userName">Your Name</label>
+									  <input id="userName" type="text" autofocus>
+									  <label for="userName">Your Name *</label>
 									</div>
-									<!--The name of the person they are praying for :|-->
+									<!--PrayeeName (The name of the person the user is praying for :|)-->
 									<div class="input-field col s12 m6">
-									  <input id="prayeeName" type="text" class="validate">
-									  <label for="prayeeName">Prayee's Name</label>
+									  <input id="prayeeName" type="text">
+									  <label for="prayeeName">Prayee's Name *</label>
 									</div>
 								</div>
 								<!--2nd Line-->
+								<div class="row" style="margin-bottom:0px;">
+									<!--Email-->
+									<div class="input-field col s12">
+									  <input id="email" type="email" class="validate" autofocus>
+									  <label for="email">Email</label>
+									</div>
+								</div>
+								<!--3rd Line-->
 								<div class="row">
 									<!--Story textarea-->
 									<div class="input-field col s12">
-										<textarea id="story" class="materialize-textarea"></textarea>
-										<label for="story">Your Story</label>
+										<textarea placeholder="Once upon a time..." id="story" class="materialize-textarea"></textarea>
+										<label for="story">Your Story *</label>
 									</div>
+									<div style="color:grey;  font-size:10px;">*Represents data that will be publicly visible</div>
 								</div>
 							</div>
-							<!--Animated Pin-->
+							<!-- 2nd Col (Animated Pin)-->
 							<div class="col s12 m6">
 								<div id="pin" style="margin-left: auto;margin-right: auto;">
 									<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
@@ -180,24 +190,25 @@
 								</div>
 								<!--Pin ID-->
 								<div class="input-field col s12">
-									  <input id="pinID" type="text" class="validate">
-									  <label for="pinID">Pin ID</label>
-									</div>
+									<input id="pinID" type="number">
+									<label for="pinID">Pin ID</label>
+								</div>
 							</div>
 						</div>
 					</div>
 					<!--Step3-->
 					<div id="Step3" class="col s12">
 						<div class="row">
-							<div class="col s12 m6">Map<div id="locationMap" style="height: 300px; width: 100%;border-radius:4px;"></div></div>
+							<div class="col s12 m6">    <div id="locationMap" style="height: 300px; width: 100%;border-radius:4px;margin-top:20px;"></div></div>
 							<div class="col s12 m6">
 								<h5 class="center-align">Add your pin to that map!</h5>
 								<div class="col s12" style="margin-top: 20px;">
 									<div class="input-field">
 										<div class="col s12">
-											<input placeholder="Address, Zip-code, or City Name" id="location" type="text" autofocus>
+											<input placeholder="Address, City Name, or Zip Code" id="location" type="text" autofocus>
 											<label for="location">Location *</label>
-											<div style="color: grey; font-size: 10px;">*This and your name will be avaliable to the public. Your entered location can be as general or as specific as you like. Alternately you can choose a location by moving the pin on the map.</div>
+											<div style="color: grey; font-size: 10px;">*Your entered location will be avaliable to the public, however, you have the choice as to how specific or general your posted location is. Alternately you can choose a location by moving the pin on the map.</div>
+											<div id="locationStatus" style="margin-top:20px;"></div>
 										</div>
 									</div>
 								</div>
@@ -207,9 +218,8 @@
 					<!--Step4-->
 					<div id="Step4" class="col s12">
 						<h5 class="center-align">Let your friends know your alive.</h5>
-						<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="link"></div>
+						<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
 						<a href="https://twitter.com/intent/tweet?button_hashtag=prayitforward&text=Just%20made%20someone's%20life%20a%20little%20bit%20better%20see%20how%20you%20can%20spread%20the%20love%20at" class="twitter-hashtag-button" data-size="large" data-url="http://aswwu.com/pray">Tweet #prayitforward</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 					</div>
 				</div>
 				<div class="modal-footer">
