@@ -9,8 +9,8 @@
 		<script src="jquery.smooth-scroll.js"></script>
 
 		<!-- Odometer includes http://github.hubspot.com/odometer/-->
-		<link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-default.css" />
-		<script src="https://github.hubspot.com/odometer/odometer.js"></script>
+		<link rel="stylesheet" href="odometer-theme-default.css" />
+		<script src="odometer.js"></script>
 
 		<!--GOOGLE ICONS-->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -35,7 +35,7 @@
 		<nav class="white">
 		   	<div class="nav-wrapper">
 		   		<a href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><i class="material-icons" style="color: grey; padding-left: 10px; padding-right: 20px;">menu</i></a>
-			    <ul><li class="hide-on-med-and-down"><a href="#" class="" style="max-height:64px;"><img  src="prayer-icon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
+			    <ul><li class="hide-on-med-and-down"><a href="#" class="" style="max-height:64px;"><img  src="logo-neon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
 			    <!--Title for Large-->
 			    <li class="hide-on-med-and-down text-theme-color" style="font-size: 25px; color: #333; font-weight: 300;">The Upper Room Initiative<li>
 			    <!--Title for Med.-->
@@ -50,7 +50,7 @@
 				</ul>
 				<ul class="side-nav" id="nav-mobile">
 					<li class="logo" style="height: 150px;">
-						<a href="#" class="brand-logo" id="logo-container"><img src="prayer-icon.png"></a>
+						<a href="#" class="brand-logo" id="logo-container"><img src="logo-neon.png"></a>
 				    </li>
 				    <li><a class="waves-effect waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
 				    <li title="Share The Prayer"><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#social">Share</a></li>
@@ -63,7 +63,6 @@
 		<div id="map-canvas" style="width: 100%; height: 100%;"></div>
 		<!--Counter-->
 		<div id="counter">
-			<img  src="prayer-icon.png" style="opacity: 0.7; width:70px;">
 			<div id="odometer" class="odometer"></div>
 		</div>
 		<!--Scroll Down Notifier-->
@@ -141,8 +140,7 @@
 					</div>
 					<!--Step1-->
 					<div id="Step1" class="col s12">
-						<h3 class="center-align" >Pray It Forward</h3>
-						<div class="center-align"><img class="pushup-animation" src="prayer-icon.png"></div>
+						<div class="center-align"><img class="" style="height:250px; width:auto;" src="main-logo.png"></div>
 						<h5 class="center-align">Pray for Someone</h5>
 					</div>
 					<!--Step2-->
@@ -150,7 +148,7 @@
 						<h5 class="center-align">Tell Us About Yourself</h5>
 						<div class="row">
 							<!--1st Col-->
-							<div class="col s12 m6">
+							<div class="col s12">
 								<!--1st Line-->
 								<div class="row" style="margin-bottom:0px;">
 									<!--Visitor's Name-->
@@ -182,18 +180,6 @@
 									<div style="color:grey;  font-size:10px;">*Represents data that will be publicly visible</div>
 								</div>
 							</div>
-							<!-- 2nd Col (Animated Pin)-->
-							<div class="col s12 m6">
-								<div id="pin" style="margin-left: auto;margin-right: auto;">
-									<div id="pinText" class="verticalMagic">The<br>Upper Room<br>Initiative</div>
-									<div class="verticalMagic"><input value="****" id="key_PinText" disabled></div>
-								</div>
-								<!--Pin ID-->
-								<div class="input-field col s12">
-									<input id="pinID" type="number">
-									<label for="pinID">Pin ID</label>
-								</div>
-							</div>
 						</div>
 					</div>
 					<!--Step3-->
@@ -208,10 +194,12 @@
 											<input placeholder="Address, City Name, or Zip Code" id="location" type="text" autofocus>
 											<label for="location">Location *</label>
 											<div style="color: grey; font-size: 10px;">*Your entered location will be avaliable to the public, however, you have the choice as to how specific or general your posted location is. Alternately you can choose a location by moving the pin on the map.</div>
-											<div id="locationStatus" style="margin-top:20px;"></div>
+											
 										</div>
 									</div>
 								</div>
+								<button id="locationButton">Verify Location</button>
+								<div id="locationStatus" style="margin-top:20px;"></div>
 							</div>
 						</div>
 					</div>

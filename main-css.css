@@ -5,7 +5,7 @@ html, body, #map-locationSelector {
 	height: 100%; margin: 0; padding: 0;
 }
 .waves-effect.waves-theme-color .waves-ripple {
-		background-color: rgba(247, 38, 53, 1);
+		background-color: #D95065;
 }
 /*This is for that fancy dancy pin*/
 #pin {
@@ -96,7 +96,7 @@ html, body, #map-locationSelector {
 	position: absolute;
 	z-index: 100; top: 50%;
 	left: 50%;
-	margin-left: -158.5px;
+	margin-left: -73.5px;
 	margin-top:-75px;
 	font-size: 100px;
 }
@@ -106,12 +106,11 @@ html, body, #map-locationSelector {
 	animation-name: bob;
 	animation-duration: 2s;
 	animation-iteration-count: 3;
-	animation-delay: 4s;
+	animation-delay: 6s;
 	animation-timing-function: ease-in-out;
 	-webkit-animation-name: bob;
 	-webkit-animation-duration: 2s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-iteration-count: 3;
+	-webkit-animation-iteration-count: 6;
 	-webkit-animation-delay: 4s;
 }
 @keyframes bob {

@@ -98,18 +98,26 @@ function readyLocatorMap() {
 	var geocoder = new google.maps.Geocoder();
 	var locatorTimeout;
 	//DOM Listener for Geocoding
-	/*document.getElementById('location').addEventListener('oninput', function() {
+	document.getElementById('locationButton').addEventListener('click', function() {
 		console.log("Geocoding");
-		$('#locationStatus').html("Checking...");
+		$('#locationButton').html("Checking...");
 		clearTimeout(locatorTimeout);
 		locatorTimeout = setTimeout(function() {
 			geocodeLocation(geocoder, locatorMap);
 		}, 2000);
-  	});*/
+  	});
 }
 //This is the Geocoding Query function API Thingy :)
 function geocodeLocation(geocoder, resultsMap) {
-
+	var address = document.getElementById('location').value;
+	geocoder.geocode({'address': address}, function(results, status) {
+	if (status === google.maps.GeocoderStatus.OK) {
+	  locatorMap.setCenter(results[0].geometry.location);
+	  locatorMarker.setPosition(results[0].geometry.location);
+	} else {
+	  Materialize.toast('Geocode was not successful for the following reason: ' + status, 4000);
+	}
+	});
 }
 
 //This is an array of Google markers it will be populated when the map finishes initializing.
