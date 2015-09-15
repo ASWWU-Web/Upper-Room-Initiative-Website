@@ -100,11 +100,8 @@ function readyLocatorMap() {
 	//DOM Listener for Geocoding
 	document.getElementById('locationButton').addEventListener('click', function() {
 		console.log("Geocoding");
-		$('#locationButton').html("Checking...");
-		clearTimeout(locatorTimeout);
-		locatorTimeout = setTimeout(function() {
-			geocodeLocation(geocoder, locatorMap);
-		}, 2000);
+		$('#locationStatus').html("Checking...");
+		geocodeLocation(geocoder, locatorMap);
   	});
 }
 //This is the Geocoding Query function API Thingy :)
@@ -114,21 +111,44 @@ function geocodeLocation(geocoder, resultsMap) {
 	if (status === google.maps.GeocoderStatus.OK) {
 	  locatorMap.setCenter(results[0].geometry.location);
 	  locatorMarker.setPosition(results[0].geometry.location);
+	  $('#locationStatus').html("Looks Good! Click next to continue.");
 	} else {
-	  Materialize.toast('Geocode was not successful for the following reason: ' + status, 4000);
+	  $('#locationStatus').html('Geocode was not successful for the following reason: ' + status);
 	}
 	});
 }
-
+//Function to move tabs to the next tab. 
+function next() {
+	var visible;
+	var steps = ['Null','Step1','Step2','Step3','Step4'];
+	for (var i = 1; i < steps.length; i++) {
+		if ($('#' + steps[i]).is(":visible")) {
+			visible = i;
+			break;
+		}
+	}
+	if(visible == 4) {
+		formSubmit();
+		return;
+	}
+	if(visible == 3 ) {
+		$("#nextButton").html("Post");
+	}
+	console.log("Moving from '" + steps[visible] + "' to '" + steps[visible + 1] + "'. ");
+	$('ul.tabs').tabs('select_tab', steps[visible +1]);
+}
+function formSubmit() {
+	console.log("postForm() Not implemented yet. Sorry about that folks");
+}
 //This is an array of Google markers it will be populated when the map finishes initializing.
 var markers = [];
 var pins = [
-	["Home!","Walla Walla University", 46.046568, -118.390622],
-	["Fred","School's tuff!", 46.047782, -118.340123],
-	["George","Things don't allways go as planned.", 46.041486, -118.398145],
-	["Allisyn","Why do bad things happen.", 46.046632, -118.391521],
-	["Bob","Why is life in general hard to cope with.", 46.041023, -118.393452],
-	["Brittney","My grandma is going through tuff times.", 46.046781, -118.398952]
+	{"name": "Eddie", "prayeeName": "Frank","location": {"lat": 46.046568, "lng": -118.390622}, "story": "Walla Walla University"},
+	{"name": "Fred", "prayeeName": "Ritchard","location": {"lat": 46.047782, "lng": -118.340123}, "story": "School's tuff!"},
+	{"name": "George", "prayeeName": "Mark","location": {"lat": 46.041486, "lng": -118.398145}, "story": "Things don't allways go as planned."},
+	{"name": "Allisyn", "prayeeName": "Steve","location": {"lat": 46.046632, "lng": -118.391521}, "story": "Why do bad things happen."},
+	{"name": "Bob", "prayeeName": "Joe","location": {"lat": 46.041023, "lng": -118.393452}, "story": "Why is life in general hard to cope with."},
+	{"name": "Brittney", "prayeeName": "Kate","location": {"lat": 46.046781, "lng": -118.398952}, "story": "My grandma is going through tuff times."}
 ];
 var wallaWalla = new google.maps.LatLng(46.046570, -118.390621); // (zoom 13)
 var unitedStates = new google.maps.LatLng(38.96370424778, -98.26366787500001); //United States (Zoom 4)
@@ -211,13 +231,13 @@ function initialize() {
 
 function putPin(pinNum, timeout) {
 	window.setTimeout(function() {
-		console.log("Working on '" + pins[pinNum][0]+ "' at (" + pins[pinNum][2] + "," + pins[pinNum][3] + ").");
+		console.log("Working on '" + pins[pinNum].name+ "' at (" + pins[pinNum].location.lat + "," + pins[pinNum].location.lng + ").");
 		markers.push(new google.maps.Marker({
-			position: {lat: pins[pinNum][2], lng: pins[pinNum][3]},
+			position: {lat: pins[pinNum].location.lat, lng: pins[pinNum].location.lng},
 			icon: 'prayer.ico',
 			animation: google.maps.Animation.DROP,
 			map: map,
-			title: pins[pinNum][0],
+			title: pins[pinNum].name,
 			zIndex: pinNum
 		}));
 	}, timeout);
