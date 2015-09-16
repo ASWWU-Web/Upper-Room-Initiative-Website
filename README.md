@@ -11,9 +11,10 @@ A website that integrates "prayer pins" and social media.
 * :heavy_check_mark: Contact Stephen for information, to get involved, buy pins, etc
 * :heavy_check_mark: ASWWU.com cause we're awesome. :stuck_out_tongue_winking_eye:
 * :heavy_check_mark: Open a popup which lets you enter information into a modal such as full name, email, and address (needs to query Google's api again to get the appropriate latitude and longitdue.)
-<br>
+
 ### Functionality
 * Form checker
 * Post pins to server 
 * Get Pins from server
+<br>
 :stuck_out_tongue_closed_eyes: 
