@@ -145,7 +145,7 @@ var markers = [];
 var pins = [
 	{"name": "Eddie", "prayeeName": "Frank","location": {"lat": 46.046568, "lng": -118.390622}, "story": "Walla Walla University"},
 	{"name": "Fred", "prayeeName": "Ritchard","location": {"lat": 46.047782, "lng": -118.340123}, "story": "School's tuff!"},
-	{"name": "George", "prayeeName": "Mark","location": {"lat": 46.041486, "lng": -118.398145}, "story": "Things don't allways go as planned."},
+	{"name": "George", "prayeeName": "Mark","location": {"lat": 46.041486, "lng": -118.398145}, "story": "Things don't allways go as planned. You know those kinds of things won't always work out too well and stuff like that. I'm just really fortunate to be alive and well. I also really think that I'm going to grow up to be a great person today and hopefully that would be okay with all ya'll."},
 	{"name": "Allisyn", "prayeeName": "Steve","location": {"lat": 46.046632, "lng": -118.391521}, "story": "Why do bad things happen."},
 	{"name": "Bob", "prayeeName": "Joe","location": {"lat": 46.041023, "lng": -118.393452}, "story": "Why is life in general hard to cope with."},
 	{"name": "Brittney", "prayeeName": "Kate","location": {"lat": 46.046781, "lng": -118.398952}, "story": "My grandma is going through tuff times."}
@@ -209,8 +209,8 @@ function initialize() {
 	];
     var mapOptions = {
     	backgroundColor: "#FFFFFF",
-        center: world,
-        zoom: 3,
+        center: wallaWalla,
+        zoom: 13,
         disableDefaultUI: false,
         scrollwheel: false,
         styles: styles
@@ -240,10 +240,25 @@ function putPin(pinNum, timeout) {
 			title: pins[pinNum].name,
 			zIndex: pinNum
 		}));
+		markers[pinNum].addListener('click', function() {
+    		openInfoMarker(pinNum);
+  		});
 	}, timeout);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
-//google.maps.event.addListener(map, 'tilesloaded', initializeTheRest());
+
+var infoWindow;
+
+function openInfoMarker(pinNum) {
+	var contentString = "<div style='background-image: url(\"logo-light.png\");background-repeat:no-repeat;background-size:contain;background-position: center;'><div class='row'><strong>" + pins[pinNum].name + "<i style='font-size:10px;'class='material-icons'>keyboard_arrow_right</i>" + pins[pinNum].prayeeName + "</strong><br><p>" + pins[pinNum].story + "</p></div></div>";
+	infoWindow = null;	
+	infoWindow = new google.maps.InfoWindow({
+		content: contentString,
+		maxWidth: 200
+	});
+	infoWindow.close();
+	infoWindow.open(map, markers[pinNum]);
+}
 
 
 //Facebook JS
