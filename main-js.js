@@ -26,8 +26,8 @@ function initializeTheRest() {
 	feed.run();
 	//facebook
 	facebook();
-	//Twiter Tweet Button Magic (TBH It really doesn't do anything)
-	//!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+	//Twiter Tweet Button Magic (TBH It really doesn't do much anything)
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 }
 //Delaration for instafeed.
 var feed = new Instafeed({
@@ -35,7 +35,7 @@ var feed = new Instafeed({
     tagName: 'prayitforward',
     clientId: '5706aa1ac7e84d609a8fd426259749be',
     limit: 12,
-    //Sorry this has to be a single line. :( Turn word wrap on and you'll be fine.
+    //Sorry this has to be a single line. :( Turn word wrap on and you'll be fine. #toolazytoaddquotesandadditionsymbols
     template: '<div class="col s6 m6 l4"><div class="card hoverable"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="{{image}}"></div><div class="card-content" style="padding:5px;"><span class="card-title activator grey-text text-darken-4" style="font-size: 18px; line-height:0;"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}<i class="material-icons right">more_vert</i></span></div><div class="card-reveal" style="padding: 10px;"><span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span><div class="left"><i class="material-icons tiny" style="color: red;">favorite</i>{{likes}}</div><br><a target="_blank" href="{{link}}" style="color:black;"><b>{{model.user.full_name}}</b></a><p>{{caption}}<br><a href="{{link}}" target="_blank">See post in context.</a></p></div></div></div>',
     sortBy: 'most-recent',
     resolution: 'low_resolution'
@@ -59,6 +59,21 @@ function startCounter() {
 		count ++;
 		odometer.update(count);
 	}, 3000);
+}
+
+//This funciton to get the counter out of the way when you are using the map.
+var counterTimeout;
+function hideCounter() {
+	if ($('#counter').is(":visible")) {
+		$('#counter').animate({opacity:0}, 500, function() {
+			$('#counter').css('visibility', 'hidden');
+		});
+	}
+	clearTimeout(counterTimeout);
+	counterTimeout = setTimeout(function() {
+		$('#counter').css('visibility', 'visible');
+		$('#counter').animate({opacity:1}, 500);
+	}, 4000);
 }
 
 
@@ -132,7 +147,7 @@ function next() {
 		return;
 	}
 	if(visible == 3 ) {
-		$("#nextButton").html("Post");
+		$("#nextButton").html("Pin to Map");
 	}
 	console.log("Moving from '" + steps[visible] + "' to '" + steps[visible + 1] + "'. ");
 	$('ul.tabs').tabs('select_tab', steps[visible +1]);
@@ -209,18 +224,18 @@ function initialize() {
 	];
     var mapOptions = {
     	backgroundColor: "#FFFFFF",
-        center: wallaWalla,
-        zoom: 13,
+        center: world,
+        zoom: 2,
         disableDefaultUI: false,
         scrollwheel: false,
         styles: styles
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    //Loads the rest of the javascript things once the map is filled.
     map.addListener('tilesloaded',function() {
     	console.log("Starting Intitialize");
     	initializeTheRest();
     });
-    //initializeTheRest();
     //Put all the pins down.
     setTimeout(function() {
     	for (var i = 0; i < pins.length; i++) {
@@ -237,7 +252,7 @@ function putPin(pinNum, timeout) {
 			icon: 'prayer.ico',
 			animation: google.maps.Animation.DROP,
 			map: map,
-			title: pins[pinNum].name,
+			title: pins[pinNum].name + " > " + pins[pinNum].prayeeName,
 			zIndex: pinNum
 		}));
 		markers[pinNum].addListener('click', function() {
@@ -247,16 +262,17 @@ function putPin(pinNum, timeout) {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
+//Initializaitons and functionality for infoWindows on pins.
 var infoWindow;
-
 function openInfoMarker(pinNum) {
 	var contentString = "<div style='background-image: url(\"logo-light.png\");background-repeat:no-repeat;background-size:contain;background-position: center;'><div class='row'><strong>" + pins[pinNum].name + "<i style='font-size:10px;'class='material-icons'>keyboard_arrow_right</i>" + pins[pinNum].prayeeName + "</strong><br><p>" + pins[pinNum].story + "</p></div></div>";
-	infoWindow = null;	
+	if (infoWindow != undefined) {
+		infoWindow.close();
+	}
 	infoWindow = new google.maps.InfoWindow({
 		content: contentString,
 		maxWidth: 200
 	});
-	infoWindow.close();
 	infoWindow.open(map, markers[pinNum]);
 }
 
