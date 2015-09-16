@@ -143,10 +143,15 @@ function next() {
 		}
 	}
 	if(visible == 4) {
-		formSubmit();
+		$("#nextButton").html("Next");
+		$('#prayItFoward').closeModal();
 		return;
 	}
-	if(visible == 3 ) {
+	if(visible == 3) {
+		$("#nextButton").html("Done");
+		formSubmit();
+	}
+	if(visible == 2 ) {
 		$("#nextButton").html("Pin to Map");
 	}
 	console.log("Moving from '" + steps[visible] + "' to '" + steps[visible + 1] + "'. ");

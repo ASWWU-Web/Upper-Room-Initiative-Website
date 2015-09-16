@@ -44,8 +44,10 @@
 			    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
 			    <ul class="right hide-on-small-only">
 				    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
-				    <li class="waves-effect waves-theme-color" title="Share The Prayer"><a class="text-theme-color smoothScroll" href="#social">Share</a></li>
+				    
 					<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
+					<li class="waves-effect waves-theme-color" title="How it Works"><a class="text-theme-color smoothScroll" href="#howItWorks">How it Works</a></li>
+					<li class="waves-effect waves-theme-color" title="Bring The Upper Room Initiative to your university."><a class="text-theme-color smoothScroll" href="#getInvolved">Get Involved</a></li>
 				    <li class="waves-effect waves-orange darken-3"><a class="text-theme-color" href="http://aswwu.com">ASWWU</a></li>
 				</ul>
 				<ul class="side-nav" id="nav-mobile">
@@ -53,14 +55,15 @@
 						<a href="#" class="brand-logo" id="logo-container"><img src="logo-neon.png"></a>
 				    </li>
 				    <li><a class="waves-effect waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
-				    <li title="Share The Prayer"><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#social">Share</a></li>
 					<li><a id="aboutUsTrigger" class="text-theme-color waves-effect waves-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
+					<li title="How to Pray it Forward"><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#howItWorks">How it works</a></li>
+					<li title="Bring The Upper Room Initiative to your university."><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#getInvolved">Get Involved</a></li>
 				    <li><a class="waves-effect waves-orange text-theme-color" href="http://aswwu.com">ASWWU</a></li>
 				</ul>
 			</div>
 		</nav>
 		<!--Map-->
-		<div id="map-canvas" onclick="hideCounter()" style="width: 100%; height: 100%;"></div>
+		<div id="map-canvas" onmousedown="hideCounter()" style="width: 100%; height: 100%;"></div>
 		<!--Counter-->
 		<div id="counter">
 			<div id="odometer" class="odometer"></div>
@@ -86,38 +89,48 @@
 			</div>
 		</div>
 		<!--About Us-->
-		<div id="aboutUs" style="box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
+		<div style="box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
 			<div class="container">
-				<h4 class="s12" style="margin-top:0; text-align: center;">
-					About Us
-				</h4>
+				
 				<div class="row">
-					<div class="col s12 m4 l2" style="min-height:100%;">
+					<div id="aboutUs" class="col s12 m4 l2" style="margin-top:10px;">
 						<div class="roundTile" style="background-image: url('about1.jpg');">
 							
 						</div>
+						<h4 class="" style="text-align: center;">
+							About Us
+						</h4>
 					</div>
-					<div class="col s12 m8 l10 flow-text">
+					<div class="col s12 m8 l10 flow-text" style="margin-top:10px;">
 						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
 					</div>
 				</div>
-				<div class="row">
-					<div class="col s12 hide-on-med-and-up valign-wrapper" style="height:100%;">
-						<div class="roundTile valign" style="background-image: url('about2.jpg');">
-						</div>
-					</div>
-					<div class="col s12 m8 l10 flow-text">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
-					</div>
-					<div class="col s12 m4 l2 hide-on-small-only valign-wrapper" style="height:100%;">
-						<div class="roundTile valign" style="background-image: url('about2.jpg');">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s12 m4 l2" style="height:100%;">
+				<div id="howItWorks" class="row">
+					<div class="col s12 hide-on-med-and-up" style="height:100%;">
 						<div class="roundTile" style="background-image: url('about3.jpg');">
 						</div>
+						<h4 class="" style="margin-top:0; text-align: center;">
+							How It Works
+						</h4>
+					</div>
+					<div class="col s12 m8 l10 flow-text">
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+					</div>
+					<div class="col s12 m4 l2 hide-on-small-only" style="height:100%;">
+						<div class="roundTile" style="background-image: url('about3.jpg');">
+						</div>
+						<h4 class="" style="margin-top:0; text-align: center;">
+							How It Works
+						</h4>
+					</div>
+				</div>
+				<div id="getInvolved" class="row">
+					<div class="col s12 m4 l2" style="height:100%;">
+						<div class="roundTile" style="background-image: url('about2.jpg');">
+						</div>
+						<h4 class="" style="text-align: center;">
+							Get Involved
+						</h4>
 					</div>
 					<div class="col s12 m8 l10 flow-text">
 						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
@@ -140,11 +153,6 @@
 					</div>
 					<!--Step1-->
 					<div id="Step1" class="col s12">
-						<div class="center-align"><img class="" style="height:250px; width:auto;" src="main-logo.png"></div>
-						<h5 class="center-align">Pray for Someone</h5>
-					</div>
-					<!--Step2-->
-					<div id="Step2" class="col s12">
 						<h5 class="center-align">Tell Us About Yourself</h5>
 						<div class="row">
 							<!--1st Col-->
@@ -156,16 +164,8 @@
 									  <input id="userName" type="text" autofocus>
 									  <label for="userName">Your Name *</label>
 									</div>
-									<!--PrayeeName (The name of the person the user is praying for :|)-->
-									<div class="input-field col s12 m6">
-									  <input id="prayeeName" type="text">
-									  <label for="prayeeName">Prayee's Name *</label>
-									</div>
-								</div>
-								<!--2nd Line-->
-								<div class="row" style="margin-bottom:0px;">
 									<!--Email-->
-									<div class="input-field col s12">
+									<div class="input-field col s12 m6">
 									  <input id="email" type="email" class="validate" autofocus>
 									  <label for="email">Email</label>
 									</div>
@@ -182,8 +182,8 @@
 							</div>
 						</div>
 					</div>
-					<!--Step3-->
-					<div id="Step3" class="col s12">
+					<!--Step2-->
+					<div id="Step2" class="col s12">
 						<div class="row">
 							<div class="col s12 m6">    <div id="locationMap" style="height: 300px; width: 100%;border-radius:4px;margin-top:20px;"></div></div>
 							<div class="col s12 m6">
@@ -203,11 +203,18 @@
 							</div>
 						</div>
 					</div>
-					<!--Step4-->
-					<div id="Step4" class="col s12">
-						<h5 class="center-align">Let your friends know your alive.</h5>
+					<!--Step3-->
+					<div id="Step3" class="col s12">
+						<h5 class="center-align">Share your prayitforward testinomy.</h5>
 						<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
 						<a href="https://twitter.com/intent/tweet?button_hashtag=prayitforward&text=I%20made%20the%20world%20a%20better%20place.%20See%20how%20you%20can%20too%20at%20" class="twitter-hashtag-button" data-url="aswwu.com/prayitforward">Tweet #prayitforward</a>
+					</div>
+					<!--Step4-->
+					<div id="Step4" class="col s12">
+						<div class="center-align"><img class="" style="height:250px; width:auto;" src="main-logo.png"></div>
+						<h5 class="center-align">Pray for someone and give them your button</h5>
+						<p>1. Pray for someone 2.give them your button 3. tell them to pray it forward.</p> 
+						<a class="smoothScroll modal-action modal-close" href="#howItWorks">How it works?</a>
 					</div>
 				</div>
 				<div class="modal-footer">
