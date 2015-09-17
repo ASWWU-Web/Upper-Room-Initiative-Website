@@ -86,7 +86,7 @@
 		<div id="prayItForward" class="row" style="position: relative;">
 				<div class="col s12">
 					<ul class="tabs">
-						<li class="tab col s3"><a class="active" href="#Step1">Step 1</a></li>
+						<li class="tab col s3"><a href="#Step1">Step 1</a></li>
 						<li class="tab col s3"><a href="#Step2">Step 2</a></li>
 						<li class="tab col s3"><a href="#Step3">Step 3</a></li>
 						<li class="tab col s3"><a href="#Step4">Step 4</a></li>
@@ -229,12 +229,13 @@
 		</div>
 			
 		<!--prayItFoward-->
-		<div  class="modal">
-			<div class="modal-content">
-				
-				<div class="modal-footer">
-					<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
-					<button id="nextButton" onclick="next()"class="waves-effect waves-blue btn-flat">Next</button>
+		<div id="welcome" class="modal">
+			<div class="modal-content" style="background-image: url('logo-light.png');background-repeat:no-repeat;background-size:contain;background-position: center;">
+				<h3 class="center-align">Welcome to the Upper Room Initiative</h3>
+				<h6 class="center-align">If you are here becuase you received a pin <a class="modal-action modal-close smoothScroll" href="#prayItForward">Pray It Forward</a>.</h6>
+				<h6 class="center-align">Otherwise check out  what we're all <a class="modal-action modal-close smoothScroll" href="#aboutUs">about</a>.</h6>
+				<div class="modal-footer" style="background-color: rgba(255,255,255,0);">
+					<a class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
 				</div>
 			</div>
 		</div>
