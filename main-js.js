@@ -6,13 +6,8 @@ function initializeTheRest() {
 	//start counter
 	startCounter();
 	//activate modal
-	/*$('.modal-trigger').leanModal({
-		//Form Assistance Javascript.
-		ready: function() {
-		  $('ul.tabs').tabs('select_tab', 'Step1');
-		  checkMapVisible();
-		}
-	});*/
+	$('.modal-trigger').leanModal();
+	$('#welcome').openModal();
 	//Makes PrayitFoward form work nice. 
 	$('ul.tabs').tabs('select_tab', 'Step1');
 	checkMapVisible();

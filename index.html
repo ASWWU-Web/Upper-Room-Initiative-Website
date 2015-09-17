@@ -48,7 +48,7 @@
 			    <!--Title for Small-->
 			    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
 			    <ul class="right hide-on-small-only">
-				    <li><a class="waves-effect waves-light waves-theme-color text-theme-color smoothScroll" href="#prayItFoward">Pray It Forward</a></li>
+				    <li><a class="waves-effect waves-light waves-theme-color text-theme-color smoothScroll" href="#prayItForward">Pray It Forward</a></li>
 					<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
 					<li class="waves-effect waves-theme-color hide-on-med-and-down" title="How it Works"><a class="text-theme-color smoothScroll" href="#howItWorks">How it Works</a></li>
 					<li class="waves-effect waves-theme-color hide-on-med-and-down" title="Bring The Upper Room Initiative to your university."><a class="text-theme-color smoothScroll" href="#getInvolved">Get Involved</a></li>
@@ -59,7 +59,7 @@
 					<li class="logo" style="height: 150px;">
 						<a href="#" class="brand-logo" id="logo-container"><img src="logo-neon.png"></a>
 				    </li>
-				    <li><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#prayItFoward">Pray It Forward</a></li>
+				    <li><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#prayItForward">Pray It Forward</a></li>
 				    <li><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#social">Share</a></li>
 					<li><a id="aboutUsTrigger" class="text-theme-color waves-effect waves-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
 					<li title="How to Pray it Forward"><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#howItWorks">How it works</a></li>
@@ -80,10 +80,10 @@
 		</div>
 		<!--Pray it forward-->
 		<div class="container" style="min-height:500px;position:relative;">
-		<div id="prayItFoward" class="row" style="position: relative;">
+		<div id="prayItForward" class="row" style="position: relative;">
 				<div class="col s12">
 					<ul class="tabs">
-						<li class="tab col s3"><a class="active" href="#Step1">Step 1</a></li>
+						<li class="tab col s3"><a href="#Step1">Step 1</a></li>
 						<li class="tab col s3"><a href="#Step2">Step 2</a></li>
 						<li class="tab col s3"><a href="#Step3">Step 3</a></li>
 						<li class="tab col s3"><a href="#Step4">Step 4</a></li>
@@ -226,12 +226,13 @@
 		</div>
 			
 		<!--prayItFoward-->
-		<div  class="modal">
-			<div class="modal-content">
-				
-				<div class="modal-footer">
-					<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
-					<button id="nextButton" onclick="next()"class="waves-effect waves-blue btn-flat">Next</button>
+		<div id="welcome" class="modal">
+			<div class="modal-content" style="background-image: url('logo-light.png');background-repeat:no-repeat;background-size:contain;background-position: center;">
+				<h3 class="center-align">Welcome to the Upper Room Initiative</h3>
+				<h6 class="center-align">If you are here becuase you received a pin <a class="modal-action modal-close smoothScroll" href="#prayItForward">Pray It Forward</a>.</h6>
+				<h6 class="center-align">Otherwise check out  what we're all <a class="modal-action modal-close smoothScroll" href="#aboutUs">about</a>.</h6>
+				<div class="modal-footer" style="background-color: rgba(255,255,255,0);">
+					<a class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
 				</div>
 			</div>
 		</div>
