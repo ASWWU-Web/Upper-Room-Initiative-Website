@@ -32,6 +32,11 @@
 	</head>
 	<body>
 		<div id="fb-root"></div>
+		<ul id="dropdown1" class="dropdown-content">
+			<li class="waves-effect waves-theme-color" title="How it Works"><a class="smoothScroll" href="#howItWorks">How it Works</a></li>
+			<li class="waves-effect waves-theme-color" title="Bring The Upper Room Initiative to your university."><a class="smoothScroll" href="#getInvolved">Get Involved</a></li>
+			<li class="waves-effect waves-theme-color" title="View Social Media Streams"><a class="text-theme-color smoothScroll" href="#social">Share</a></li>
+		</ul>
 		<nav class="white">
 		   	<div class="nav-wrapper">
 		   		<a href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><i class="material-icons" style="color: grey; padding-left: 10px; padding-right: 20px;">menu</i></a>
@@ -43,18 +48,19 @@
 			    <!--Title for Small-->
 			    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
 			    <ul class="right hide-on-small-only">
-				    <li><a class="waves-effect waves-light waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
-				    
+				    <li><a class="waves-effect waves-light waves-theme-color text-theme-color smoothScroll" href="#prayItFoward">Pray It Forward</a></li>
 					<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
-					<li class="waves-effect waves-theme-color" title="How it Works"><a class="text-theme-color smoothScroll" href="#howItWorks">How it Works</a></li>
-					<li class="waves-effect waves-theme-color" title="Bring The Upper Room Initiative to your university."><a class="text-theme-color smoothScroll" href="#getInvolved">Get Involved</a></li>
+					<li class="waves-effect waves-theme-color hide-on-med-and-down" title="How it Works"><a class="text-theme-color smoothScroll" href="#howItWorks">How it Works</a></li>
+					<li class="waves-effect waves-theme-color hide-on-med-and-down" title="Bring The Upper Room Initiative to your university."><a class="text-theme-color smoothScroll" href="#getInvolved">Get Involved</a></li>
+					<li class="hide-on-large-only"><a class="dropdown-button text-theme-color" href="#!" data-activates="dropdown1">More<i class="material-icons right small" style="margin-left: 0;">arrow_drop_down</i></a></li>
 				    <li class="waves-effect waves-orange darken-3"><a class="text-theme-color" href="http://aswwu.com">ASWWU</a></li>
 				</ul>
 				<ul class="side-nav" id="nav-mobile">
 					<li class="logo" style="height: 150px;">
 						<a href="#" class="brand-logo" id="logo-container"><img src="logo-neon.png"></a>
 				    </li>
-				    <li><a class="waves-effect waves-theme-color modal-trigger text-theme-color" href="#prayItFoward">Pray It Forward</a></li>
+				    <li><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#prayItFoward">Pray It Forward</a></li>
+				    <li><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#social">Share</a></li>
 					<li><a id="aboutUsTrigger" class="text-theme-color waves-effect waves-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
 					<li title="How to Pray it Forward"><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#howItWorks">How it works</a></li>
 					<li title="Bring The Upper Room Initiative to your university."><a class="waves-effect waves-theme-color text-theme-color smoothScroll" href="#getInvolved">Get Involved</a></li>
@@ -72,6 +78,86 @@
 		<div style="position: absolute; bottom:15px; right: 50%; margin-right: -75px; width: 150px; text-align: center;">
 			<a title="There's more. Scroll Down" class="smoothScroll" href="#social"><i id="scrollDownArrow" class="medium material-icons">keyboard_arrow_down</i></a>
 		</div>
+		<!--Pray it forward-->
+		<div class="container" style="min-height:500px;position:relative;">
+		<div id="prayItFoward" class="row" style="position: relative;">
+				<div class="col s12">
+					<ul class="tabs">
+						<li class="tab col s3"><a class="active" href="#Step1">Step 1</a></li>
+						<li class="tab col s3"><a href="#Step2">Step 2</a></li>
+						<li class="tab col s3"><a href="#Step3">Step 3</a></li>
+						<li class="tab col s3"><a href="#Step4">Step 4</a></li>
+					</ul>
+				</div>
+				<!--Step1-->
+				<div id="Step1" class="col s12">
+					<h5 class="center-align">Tell Us About Yourself</h5>
+					<div class="row">
+						<!--1st Col-->
+						<div class="col s12">
+							<!--1st Line-->
+							<div class="row" style="margin-bottom:0px;">
+								<!--Visitor's Name-->
+								<div class="input-field col s12 m6">
+								  <input id="userName" type="text">
+								  <label for="userName">Your Name *</label>
+								</div>
+								<!--Email-->
+								<div class="input-field col s12 m6">
+								  <input id="email" type="email" class="validate">
+								  <label for="email">Email</label>
+								</div>
+							</div>
+							<!--3rd Line-->
+							<div class="row">
+								<!--Story textarea-->
+								<div class="input-field col s12">
+									<textarea placeholder="Once upon a time..." id="story" class="materialize-textarea"></textarea>
+									<label for="story">Your Story *</label>
+								</div>
+								<div style="color:grey;  font-size:10px;">*Represents data that will be publicly visible</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Step2-->
+				<div id="Step2" class="col s12">
+					<div class="row">
+						<div class="col s12 m6">    <div id="locationMap" style="height: 240px; width: 100%;border-radius:4px;margin-top:20px;"></div></div>
+						<div class="col s12 m6">
+							<h5 class="center-align">Stick a pin to that map!</h5>
+							<div class="col s12" style="margin-top: 20px;">
+								<div class="input-field">
+									<div class="col s12">
+										<input placeholder="Address, City Name, or Zip Code" id="location" type="text" autofocus>
+										<label for="location">Location *</label>
+										<div style="color: grey; font-size: 10px;">*Your entered location will be avaliable to the public, however, you have the choice as to how specific or general your posted location is. Alternately you can choose a location by moving the pin on the map.</div>
+										
+									</div>
+								</div>
+							</div>
+							<button id="locationButton" class="waves-effect waves-light btn" style="margin-top:10px;">Verify Location</button>
+							<div id="locationStatus" style="margin-top:20px;"></div>
+						</div>
+					</div>
+				</div>
+				<!--Step3-->
+				<div id="Step3" class="col s12">
+					<h5 class="center-align">Share your prayitforward testinomy.</h5>
+					<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
+					<a href="https://twitter.com/intent/tweet?button_hashtag=prayitforward&text=I%20made%20the%20world%20a%20better%20place.%20See%20how%20you%20can%20too%20at%20" class="twitter-hashtag-button" data-url="aswwu.com/prayitforward">Tweet #prayitforward</a>
+				</div>
+				<!--Step4-->
+				<div id="Step4" class="col s12">
+					<div class="center-align"><img class="" style="height:250px; width:auto;" src="main-logo.png"></div>
+					<h5 class="center-align">Pray for someone and give them your button</h5>
+					<p class="center-align">1. Pray for someone 2.give them your button 3. tell them to pray it forward. <a class="smoothScroll" href="#howItWorks">Learn more</a></p> 
+					
+				</div>
+			</div>
+			<button id="nextButton" onclick="next()" class="waves-effect waves-blue btn-flat" style="position: absolute; bottom: 10px;right:0px;">Next</button>
+		</div>
+
 		<!--Social-->
 		<div id="social" class="row" style="height: 100%; margin-bottom: 0;">
 			<!--Instagram-->
@@ -140,83 +226,9 @@
 		</div>
 			
 		<!--prayItFoward-->
-		<div id="prayItFoward" class="modal">
+		<div  class="modal">
 			<div class="modal-content">
-				<div class="row">
-					<div class="col s12">
-						<ul class="tabs">
-							<li class="tab col s3"><a class="active" href="#Step1">Step 1</a></li>
-							<li class="tab col s3"><a href="#Step2">Step 2</a></li>
-							<li class="tab col s3"><a href="#Step3">Step 3</a></li>
-							<li class="tab col s3"><a href="#Step4">Step 4</a></li>
-						</ul>
-					</div>
-					<!--Step1-->
-					<div id="Step1" class="col s12">
-						<h5 class="center-align">Tell Us About Yourself</h5>
-						<div class="row">
-							<!--1st Col-->
-							<div class="col s12">
-								<!--1st Line-->
-								<div class="row" style="margin-bottom:0px;">
-									<!--Visitor's Name-->
-									<div class="input-field col s12 m6">
-									  <input id="userName" type="text" autofocus>
-									  <label for="userName">Your Name *</label>
-									</div>
-									<!--Email-->
-									<div class="input-field col s12 m6">
-									  <input id="email" type="email" class="validate" autofocus>
-									  <label for="email">Email</label>
-									</div>
-								</div>
-								<!--3rd Line-->
-								<div class="row">
-									<!--Story textarea-->
-									<div class="input-field col s12">
-										<textarea placeholder="Once upon a time..." id="story" class="materialize-textarea"></textarea>
-										<label for="story">Your Story *</label>
-									</div>
-									<div style="color:grey;  font-size:10px;">*Represents data that will be publicly visible</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--Step2-->
-					<div id="Step2" class="col s12">
-						<div class="row">
-							<div class="col s12 m6">    <div id="locationMap" style="height: 300px; width: 100%;border-radius:4px;margin-top:20px;"></div></div>
-							<div class="col s12 m6">
-								<h5 class="center-align">Stick a pin to that map!</h5>
-								<div class="col s12" style="margin-top: 20px;">
-									<div class="input-field">
-										<div class="col s12">
-											<input placeholder="Address, City Name, or Zip Code" id="location" type="text" autofocus>
-											<label for="location">Location *</label>
-											<div style="color: grey; font-size: 10px;">*Your entered location will be avaliable to the public, however, you have the choice as to how specific or general your posted location is. Alternately you can choose a location by moving the pin on the map.</div>
-											
-										</div>
-									</div>
-								</div>
-								<button id="locationButton" class="waves-effect waves-light btn" style="margin-top:10px;">Verify Location</button>
-								<div id="locationStatus" style="margin-top:20px;"></div>
-							</div>
-						</div>
-					</div>
-					<!--Step3-->
-					<div id="Step3" class="col s12">
-						<h5 class="center-align">Share your prayitforward testinomy.</h5>
-						<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
-						<a href="https://twitter.com/intent/tweet?button_hashtag=prayitforward&text=I%20made%20the%20world%20a%20better%20place.%20See%20how%20you%20can%20too%20at%20" class="twitter-hashtag-button" data-url="aswwu.com/prayitforward">Tweet #prayitforward</a>
-					</div>
-					<!--Step4-->
-					<div id="Step4" class="col s12">
-						<div class="center-align"><img class="" style="height:250px; width:auto;" src="main-logo.png"></div>
-						<h5 class="center-align">Pray for someone and give them your button</h5>
-						<p>1. Pray for someone 2.give them your button 3. tell them to pray it forward.</p> 
-						<a class="smoothScroll modal-action modal-close" href="#howItWorks">How it works?</a>
-					</div>
-				</div>
+				
 				<div class="modal-footer">
 					<a  class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
 					<button id="nextButton" onclick="next()"class="waves-effect waves-blue btn-flat">Next</button>

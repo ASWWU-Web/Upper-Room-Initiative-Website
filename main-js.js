@@ -6,13 +6,16 @@ function initializeTheRest() {
 	//start counter
 	startCounter();
 	//activate modal
-	$('.modal-trigger').leanModal({
+	/*$('.modal-trigger').leanModal({
 		//Form Assistance Javascript.
 		ready: function() {
 		  $('ul.tabs').tabs('select_tab', 'Step1');
 		  checkMapVisible();
 		}
-	});
+	});*/
+	//Makes PrayitFoward form work nice. 
+	$('ul.tabs').tabs('select_tab', 'Step1');
+	checkMapVisible();
 	//Mobile menu button
 	$(".button-collapse").sideNav();
 	//Initialize marterialize "tabs"
@@ -143,12 +146,12 @@ function next() {
 		}
 	}
 	if(visible == 4) {
+		$('ul.tabs').tabs('select_tab', 'Step1');
 		$("#nextButton").html("Next");
-		$('#prayItFoward').closeModal();
 		return;
 	}
 	if(visible == 3) {
-		$("#nextButton").html("Done");
+		$("#nextButton").html("Enter Another");
 		formSubmit();
 	}
 	if(visible == 2 ) {
