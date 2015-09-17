@@ -44,22 +44,20 @@ var feed = new Instafeed({
     resolution: 'low_resolution'
 });
 
-
+var count = 0;
 //Startup Script for Prayer Counter
 function startCounter() {
 	console.log("Starting counter");
-	var count = 163;
 	var selector = document.querySelector('#odometer');
 	odometer = new Odometer({
 		el: selector,
-		value: 0,
+		value: count,
 		duration: 3000,
 		format: ''
 	});
 	$('#counter').animate({opacity:1}, 1000);
 	odometer.update(count);
 	setInterval(function(){
-		count ++;
 		odometer.update(count);
 	}, 3000);
 }
@@ -165,14 +163,8 @@ function formSubmit() {
 }
 //This is an array of Google markers it will be populated when the map finishes initializing.
 var markers = [];
-var pins = [
-	{"name": "Eddie", "prayeeName": "Frank","location": {"lat": 46.046568, "lng": -118.390622}, "story": "Walla Walla University"},
-	{"name": "Fred", "prayeeName": "Ritchard","location": {"lat": 46.047782, "lng": -118.340123}, "story": "School's tuff!"},
-	{"name": "George", "prayeeName": "Mark","location": {"lat": 46.041486, "lng": -118.398145}, "story": "Things don't allways go as planned. You know those kinds of things won't always work out too well and stuff like that. I'm just really fortunate to be alive and well. I also really think that I'm going to grow up to be a great person today and hopefully that would be okay with all ya'll."},
-	{"name": "Allisyn", "prayeeName": "Steve","location": {"lat": 46.046632, "lng": -118.391521}, "story": "Why do bad things happen."},
-	{"name": "Bob", "prayeeName": "Joe","location": {"lat": 46.041023, "lng": -118.393452}, "story": "Why is life in general hard to cope with."},
-	{"name": "Brittney", "prayeeName": "Kate","location": {"lat": 46.046781, "lng": -118.398952}, "story": "My grandma is going through tuff times."}
-];
+var pins = [];
+var	rootRef = new Firebase("https://prayitforward.firebaseio.com/");
 var wallaWalla = new google.maps.LatLng(46.046570, -118.390621); // (zoom 13)
 var unitedStates = new google.maps.LatLng(38.96370424778, -98.26366787500001); //United States (Zoom 4)
 var world = new google.maps.LatLng(9.281074119839158, 23.201175874999958);//Zoom 2
@@ -233,7 +225,7 @@ function initialize() {
     var mapOptions = {
     	backgroundColor: "#FFFFFF",
         center: world,
-        zoom: 2,
+        zoom: 3,
         disableDefaultUI: false,
         scrollwheel: false,
         styles: styles
@@ -245,18 +237,25 @@ function initialize() {
     	initializeTheRest();
     });
     //Put all the pins down.
-    setTimeout(function() {
-    	for (var i = 0; i < pins.length; i++) {
-    		putPin(i, i*200);
-    	}
-    }, 1000);
+	var pinsRef = rootRef.child('pins');
+	var pinsPrivate = rootRef.child('pins');
+	pinsRef.on("child_added", function(snapshot) {
+		console.log(snapshot.val());
+		pins.push(snapshot.val());
+		putPin(count, count*200);
+		count++;
+	}, function (errorObject) {
+	  console.log("The read failed: " + errorObject.code);
+	});
 }
 
 function putPin(pinNum, timeout) {
+	if (timeout > 5000)
+		timeout = 5000;
 	window.setTimeout(function() {
-		console.log("Working on '" + pins[pinNum].name+ "' at (" + pins[pinNum].location.lat + "," + pins[pinNum].location.lng + ").");
+		console.log("Working on '" + pins[pinNum].name+ "' at (" + pins[pinNum].lat + "," + pins[pinNum].lng + ").");
 		markers.push(new google.maps.Marker({
-			position: {lat: pins[pinNum].location.lat, lng: pins[pinNum].location.lng},
+			position: {lat: pins[pinNum].lat, lng: pins[pinNum].lng},
 			icon: 'prayer.ico',
 			animation: google.maps.Animation.DROP,
 			map: map,
