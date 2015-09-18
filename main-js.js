@@ -129,7 +129,7 @@ function geocodeLocation(geocoder, resultsMap) {
 	});
 }
 //Function to move tabs to the next tab. 
-function next() {
+function nextTab() {
 	var visible;
 	var steps = ['Null','Step1','Step2','Step3','Step4'];
 	for (var i = 1; i < steps.length; i++) {
@@ -141,6 +141,7 @@ function next() {
 	if(visible == 4) {
 		$('ul.tabs').tabs('select_tab', 'Step1');
 		$("#nextButton").html("Next");
+		$("#name").focus();
 		return;
 	}
 	if(visible == 3) {
@@ -150,12 +151,22 @@ function next() {
 	if(visible == 2 ) {
 		$("#nextButton").html("Pin to Map");
 	}
-	console.log("Moving from '" + steps[visible] + "' to '" + steps[visible + 1] + "'. ");
 	$('ul.tabs').tabs('select_tab', steps[visible +1]);
+	if(visible == 1) 
+		$("#location").focus();
 }
 function formSubmit() {
-	console.log("postForm() Not implemented yet. Sorry about that folks");
+	console.log("postForm() Not working just yet. Sorry about that folks");
+	var pushJSON = {"name":$('#name').val(),story:$('#story').val(),email:$('#email').val()};
 }
+
+//This function makes the map ocupy the correct amount of space. 
+$(window).resize(function() {
+    console.log("Window Resize");
+    $("#map-canvas").height($( window ).height() - $( 'nav' ).height());
+    google.maps.event.trigger(map, "resize");
+  });
+
 //This is an array of Google markers it will be populated when the map finishes initializing.
 var markers = [];
 var pins = [];
@@ -233,9 +244,7 @@ function initialize() {
     });
     //Put all the pins down.
 	var pinsRef = rootRef.child('pins');
-	var pinsPrivate = rootRef.child('pins');
 	pinsRef.on("child_added", function(snapshot) {
-		console.log(snapshot.val());
 		pins.push(snapshot.val());
 		putPin(count, count*200);
 		count++;
@@ -248,7 +257,6 @@ function putPin(pinNum, timeout) {
 	if (timeout > 5000)
 		timeout = 5000;
 	window.setTimeout(function() {
-		console.log("Working on '" + pins[pinNum].name+ "' at (" + pins[pinNum].lat + "," + pins[pinNum].lng + ").");
 		markers.push(new google.maps.Marker({
 			position: {lat: pins[pinNum].lat, lng: pins[pinNum].lng},
 			icon: 'prayer.ico',

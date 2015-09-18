@@ -82,9 +82,9 @@
 			<a title="There's more. Scroll Down" class="smoothScroll" href="#prayItForward"><i id="scrollDownArrow" class="medium material-icons">keyboard_arrow_down</i><div class="hide-on-med-and-up">Tap to Scroll</div></a>
 		</div>
 		<!--Pray it forward-->
-		<div class="container" style="min-height:500px;position:relative;">
-		<div id="prayItForward" class="row" style="position: relative;">
-				<div class="col s12">
+		<div class="container" style="min-height:400px;position:relative;">
+			<div id="prayItForward" class="row" style="position: relative;">
+				<div class="col s12" style="display:none;">
 					<ul class="tabs">
 						<li class="tab col s3"><a href="#Step1">Step 1</a></li>
 						<li class="tab col s3"><a href="#Step2">Step 2</a></li>
@@ -102,8 +102,8 @@
 							<div class="row" style="margin-bottom:0px;">
 								<!--Visitor's Name-->
 								<div class="input-field col s12 m6">
-								  <input id="userName" type="text">
-								  <label for="userName">Your Name *</label>
+								  <input id="name" type="text">
+								  <label for="name">Your Name *</label>
 								</div>
 								<!--Email-->
 								<div class="input-field col s12 m6">
@@ -132,7 +132,7 @@
 							<div class="col s12" style="margin-top: 20px;">
 								<div class="input-field">
 									<div class="col s12">
-										<input placeholder="Address, City Name, or Zip Code" id="location" type="text" autofocus>
+										<input placeholder="Address, City Name, or Zip Code" id="location" type="text">
 										<label for="location">Location *</label>
 										<div style="color: grey; font-size: 10px;">*Your entered location will be avaliable to the public, however, you have the choice as to how specific or general your posted location is. Alternately you can choose a location by moving the pin on the map.</div>
 										
@@ -152,13 +152,14 @@
 				</div>
 				<!--Step4-->
 				<div id="Step4" class="col s12">
-					<div class="center-align"><img class="" style="height:250px; width:auto;" src="main-logo.png"></div>
+					<div class="center-align"><div style="height:250px; width:auto; background-image: url('main-logo.png');background-repeat:no-repeat;background-size:contain;background-position: center;" src=""></div></div>
 					<h5 class="center-align">Pray for someone and give them your button</h5>
 					<p class="center-align">1. Pray for someone 2.give them your button 3. tell them to pray it forward. <a class="smoothScroll" href="#howItWorks">Learn more</a></p> 
 					
 				</div>
 			</div>
-			<button id="nextButton" onclick="next()" class="waves-effect waves-blue btn-flat" style="position: absolute; bottom: 10px;right:0px;">Next</button>
+			<!--Next Button-->
+			<button id="nextButton" onclick="nextTab()" class="waves-effect waves-blue btn-flat" style="position: absolute; bottom: 10px;right:0px;">Next</button>
 		</div>
 
 		<!--Social-->
@@ -232,7 +233,7 @@
 		<div id="welcome" class="modal">
 			<div class="modal-content" style="background-image: url('logo-light.png');background-repeat:no-repeat;background-size:contain;background-position: center;">
 				<h3 class="center-align">Welcome to the Upper Room Initiative</h3>
-				<h6 class="center-align">If you are here becuase you received a pin <a class="modal-action modal-close smoothScroll" href="#prayItForward">Pray It Forward</a>.</h6>
+				<h6 class="center-align">If you are here because you received a pin <a class="modal-action modal-close smoothScroll" onclick="$('#name').focus()" href="#prayItForward">Pray It Forward</a>.</h6>
 				<h6 class="center-align">Otherwise check out  what we're all <a class="modal-action modal-close smoothScroll" href="#aboutUs">about</a>.</h6>
 				<div class="modal-footer" style="background-color: rgba(255,255,255,0);">
 					<a class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
