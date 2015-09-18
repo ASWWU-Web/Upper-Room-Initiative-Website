@@ -157,7 +157,20 @@ function nextTab() {
 }
 function formSubmit() {
 	console.log("postForm() Not working just yet. Sorry about that folks");
-	var pushJSON = {"name":$('#name').val(),story:$('#story').val(),email:$('#email').val()};
+	var pinsRef = rootRef.child('pins');
+	var check = {"name":$('#name').val(),story:$('#story').val(),email:$('#email').val(),lat:locatorMarker.getPosition().H,lng:locatorMarker.getPosition().L};
+	if (checkForm(check)){
+		pinsRef.push({
+			name: check.name,
+			story: check.story,
+			email:check.email,
+			lat: check.lat,
+			lng: check.lng
+		})
+	}
+}
+function checkForm(check) {
+	return true;
 }
 
 //This function makes the map ocupy the correct amount of space. 
