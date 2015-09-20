@@ -169,8 +169,14 @@ function formSubmit() {
 		})
 	}
 }
+
 function checkForm(check) {
 	return true;
+}
+//Remove Bad Characters
+function rmbc(strTemp) {  
+    strTemp = strTemp.replace(/[^A-Za-z0-9_ ]/g,"");  
+    return strTemp; 
 }
 
 //This function makes the map ocupy the correct amount of space. 
@@ -202,30 +208,32 @@ function initialize() {
 	      elementType: 'geometry',
 	      stylers: [
 	        { saturation: -100 },
-	        { lightness: -85 },
+	        { lightness: -50 },
 	        { visibility: 'on' }
 	      ]
 	    },{
 	      featureType: 'road',
 	      elementType: 'labels',
 	      stylers: [
-	        { saturation: -100 },
-	        { visibility: 'on' },
-	        { gamma: .2}
+	        /*{ saturation: -100 },
+	        { gamma: .2},*/
+	        { visibility: 'on' }
 	      ]
 	    },{
 	      featureType: 'city',
 	      elementType: 'labels',
 	      stylers: [
-	        { saturation: -100 },
+	        //{ saturation: -100 },
 	        { visibility: 'on' }
 	      ]
 	    },{
 			featureType: 'all',
 			elementType: 'labels.text.fill',
 			stylers: [
-				{ lightness: -100 },
-				{ gamma: .01 }
+				{ saturation: -100},
+				/*{ lightness: -100 },
+				{ gamma: .01 },*/
+				{ visibility: 'on'}
 			]
 		},{
 			featureType: 'administrative',
