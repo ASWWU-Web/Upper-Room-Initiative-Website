@@ -59,7 +59,7 @@ function startCounter() {
 
 //This funciton to get the counter out of the way when you are using the map.
 var counterTimeout;
-function hideCounter() {
+function hideCounter(timeout) {
 	if ($('#counter').is(":visible")) {
 		$('#counter').animate({opacity:0}, 500, function() {
 			$('#counter').css('visibility', 'hidden');
@@ -69,7 +69,7 @@ function hideCounter() {
 	counterTimeout = setTimeout(function() {
 		$('#counter').css('visibility', 'visible');
 		$('#counter').animate({opacity:1}, 500);
-	}, 4000);
+	}, timeout);
 }
 
 
@@ -139,43 +139,72 @@ function nextTab() {
 		}
 	}
 	if(visible == 4) {
+
+		focusoncurrent();
 		$('ul.tabs').tabs('select_tab', 'Step1');
 		$("#nextButton").html("Next");
-		$("#name").focus();
 		return;
 	}
 	if(visible == 3) {
-		$("#nextButton").html("Enter Another");
+		$("#nextButton").html("See Your Pin");
 		formSubmit();
 	}
 	if(visible == 2 ) {
-		$("#nextButton").html("Pin to Map");
+		$("#nextButton").html("Continue");
 	}
 	$('ul.tabs').tabs('select_tab', steps[visible +1]);
 	if(visible == 1) 
 		$("#location").focus();
 }
+
+var pinIndex;
 function formSubmit() {
-	console.log("postForm() Not working just yet. Sorry about that folks");
 	var pinsRef = rootRef.child('pins');
-	var check = {"name":$('#name').val(),story:$('#story').val(),email:$('#email').val(),lat:locatorMarker.getPosition().H,lng:locatorMarker.getPosition().L};
+	
+	var pinsPostRef = pinsRef.push();
+	var check = {"name":rmbc($('#name').val()),"story":rmbc($('#story').val()),"email":rmbc($('#email').val()),lat:locatorMarker.getPosition().H,lng:locatorMarker.getPosition().L, "date": dts()};
 	if (checkForm(check)){
-		pinsRef.push({
+		pinsPostRef.set({
 			name: check.name,
 			story: check.story,
-			email:check.email,
+			date: Firebase.ServerValue.TIMESTAMP, 
 			lat: check.lat,
 			lng: check.lng
-		})
+		});
+		//add Duplicate pin to map.
+		pins.push(check);
+		pinIndex = pins.length-1;
+		console.log("pin Index:" + pinIndex);
+		putPin(pinIndex, 0);
+		//Through Up the email
+		var pinsPrivateRef = rootRef.child('pinsPrivate/' + pinsPostRef.key());
+		pinsPrivateRef.set({
+			"email": rmbc($('#email').val())
+		});
 	}
 }
-
+function focusoncurrent() {
+	console.log("open Info Marker!");
+	$.smoothScroll({
+      scrollTarget: '#nav'
+    });
+	map.setCenter(markers[pinIndex].position);
+	openInfoMarker(pinIndex);
+	hideCounter(20000);
+}
+//Current date to string
+function dts () {
+	var date = new Date();
+	return date.getTime();
+}
+//The future function that is going to check the form. :|
 function checkForm(check) {
 	return true;
 }
+
 //Remove Bad Characters
 function rmbc(strTemp) {  
-    strTemp = strTemp.replace(/[^A-Za-z0-9_ ]/g,"");  
+    strTemp = strTemp.replace(/[^A-Za-z0-9_!?.@();: ]/g,"");  
     return strTemp; 
 }
 
@@ -267,10 +296,10 @@ function initialize() {
 	var pinsRef = rootRef.child('pins');
 	pinsRef.on("child_added", function(snapshot) {
 		pins.push(snapshot.val());
-		putPin(count, count*200);
+		putPin(count, 0);
 		count++;
 	}, function (errorObject) {
-	  console.log("The read failed: " + errorObject.code);
+	   Materialize.toast("Failed to get pins: " + errorObject.code);
 	});
 }
 
@@ -283,7 +312,7 @@ function putPin(pinNum, timeout) {
 			icon: 'prayer.ico',
 			animation: google.maps.Animation.DROP,
 			map: map,
-			title: pins[pinNum].name + " > " + pins[pinNum].prayeeName,
+			title: pins[pinNum].name,
 			zIndex: pinNum
 		}));
 		markers[pinNum].addListener('click', function() {
@@ -296,7 +325,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //Initializaitons and functionality for infoWindows on pins.
 var infoWindow;
 function openInfoMarker(pinNum) {
-	var contentString = "<div style='background-image: url(\"logo-light.png\");background-repeat:no-repeat;background-size:contain;background-position: center;'><div class='row'><strong>" + pins[pinNum].name + "<i style='font-size:10px;'class='material-icons'>keyboard_arrow_right</i>" + pins[pinNum].prayeeName + "</strong><br><p>" + pins[pinNum].story + "</p></div></div>";
+	var contentString = "<div style='background-image: url(\"logo-light.png\");background-repeat:no-repeat;background-size:contain;background-position: center;'><div class='row'><strong>" + pins[pinNum].name + "</strong><br><p>" + pins[pinNum].story + "</p><p>"+std(pins[pinNum].date)+"</div></div>";
 	if (infoWindow != undefined) {
 		infoWindow.close();
 	}
@@ -305,6 +334,12 @@ function openInfoMarker(pinNum) {
 		maxWidth: 200
 	});
 	infoWindow.open(map, markers[pinNum]);
+}
+
+//String to date
+function std(milliseconds){
+	var date = new Date(milliseconds);
+	return date.toLocaleTimeString() + " " + date.toLocaleDateString();
 }
 
 
