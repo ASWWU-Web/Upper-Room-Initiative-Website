@@ -147,17 +147,19 @@ function nextTab() {
 	}
 	if(visible == 3) {
 		$("#nextButton").html("See Your Pin");
-		formSubmit();
 	}
 	if(visible == 2 ) {
 		$("#nextButton").html("Continue");
+		formSubmit();
 	}
 	$('ul.tabs').tabs('select_tab', steps[visible +1]);
-	if(visible == 1) 
+	if(visible == 1) {
+		$("#nextButton").html("Pin to Map");
 		$("#location").focus();
+	} 
 }
 
-var pinIndex;
+var currentPin;
 function formSubmit() {
 	var pinsRef = rootRef.child('pins');
 	
@@ -173,9 +175,9 @@ function formSubmit() {
 		});
 		//add Duplicate pin to map.
 		pins.push(check);
-		pinIndex = pins.length-1;
-		console.log("pin Index:" + pinIndex);
-		putPin(pinIndex, 0);
+		currentPin = pins.length-1;
+		putPin(currentPin, 0);
+		pinIndex++;
 		//Through Up the email
 		var pinsPrivateRef = rootRef.child('pinsPrivate/' + pinsPostRef.key());
 		pinsPrivateRef.set({
@@ -184,12 +186,11 @@ function formSubmit() {
 	}
 }
 function focusoncurrent() {
-	console.log("open Info Marker!");
 	$.smoothScroll({
       scrollTarget: '#nav'
     });
-	map.setCenter(markers[pinIndex].position);
-	openInfoMarker(pinIndex);
+	map.setCenter(markers[currentPin].position);
+	openInfoMarker(currentPin);
 	hideCounter(20000);
 }
 //Current date to string
@@ -216,6 +217,7 @@ $(window).resize(function() {
   });
 
 //This is an array of Google markers it will be populated when the map finishes initializing.
+var pinIndex = 0;
 var markers = [];
 var pins = [];
 var	rootRef = new Firebase("https://prayitforward.firebaseio.com/");
@@ -296,8 +298,9 @@ function initialize() {
 	var pinsRef = rootRef.child('pins');
 	pinsRef.on("child_added", function(snapshot) {
 		pins.push(snapshot.val());
-		putPin(count, 0);
+		putPin(pinIndex, 0);
 		count++;
+		pinIndex++;
 	}, function (errorObject) {
 	   Materialize.toast("Failed to get pins: " + errorObject.code);
 	});
@@ -346,11 +349,23 @@ function std(milliseconds){
 //Facebook JS
 function facebook() {
 	console.log("Starting Facebook");
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
-		fjs.parentNode.insertBefore(js, fjs);
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '193673707489176|CSya6L7Q081Uw6OrFfI14AsmfSA',
+			xfbml      : false	,
+			version    : 'v2.4'
+		});
+	};
+	(function(d, s, id){
+		 var js, fjs = d.getElementsByTagName(s)[0];
+		 if (d.getElementById(id)) {return;}
+		 js = d.createElement(s); js.id = id;
+		 js.src = "//connect.facebook.net/en_US/sdk.js";
+		 fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
+	FB.ui(
+	 {
+	  method: 'share',
+	  href: 'https://developers.facebook.com/docs/'
+	}, function(response){});
 }
