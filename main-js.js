@@ -215,29 +215,26 @@ function dts () {
 //The future function that is going to check the form. :|
 function checkStep1() {
 	if ($('#name').val() == "") {
-		Materialize.toast("Please enter your name.", 4000);
-		$('ul.tabs').tabs('select_tab', 'Step1');
 		$("#name").focus();
+		Materialize.toast("Please enter your name.", 4000);
 		return false;
 	}
 	if (!validateEmail($('#email').val())) {
-		Materialize.toast("Please enter a valid email.", 4000);
-		$('ul.tabs').tabs('select_tab', 'Step1');
 		$("#email").focus();
+		Materialize.toast("Please enter a valid email.", 4000);
 		return false;
 	}
 	if ($('#story').val() == "") {
-		Materialize.toast("Please enter your story.", 4000);
-		$('ul.tabs').tabs('select_tab', 'Step1');
 		$("#story").focus();
+		Materialize.toast("Please enter your story.", 4000);
 		return false;
 	}
 	return true;
 }
 function checkStep2() {
 	if (!locationSet) {
-		Materialize.toast("Please enter a location and click 'Verify Location.'", 4000);
 		$("#location").focus();
+		Materialize.toast("Please enter a location and click 'Verify Location.'", 4000);
 		return false;
 	}
 	return true;
