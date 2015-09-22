@@ -115,7 +115,9 @@ function readyLocatorMap() {
 		geocodeLocation(geocoder, locatorMap);
   	});
 }
+
 //This is the Geocoding Query function API Thingy :)
+var locationSet = false;
 function geocodeLocation(geocoder, resultsMap) {
 	var address = document.getElementById('location').value;
 	geocoder.geocode({'address': address}, function(results, status) {
@@ -123,6 +125,7 @@ function geocodeLocation(geocoder, resultsMap) {
 	  locatorMap.setCenter(results[0].geometry.location);
 	  locatorMarker.setPosition(results[0].geometry.location);
 	  $('#locationStatus').html("Looks Good! Click next to continue.");
+	  locationSet = true;
 	} else {
 	  $('#locationStatus').html('Geocode was not successful for the following reason: ' + status);
 	}
@@ -139,7 +142,6 @@ function nextTab() {
 		}
 	}
 	if(visible == 4) {
-
 		focusoncurrent();
 		$('ul.tabs').tabs('select_tab', 'Step1');
 		$("#nextButton").html("Next");
@@ -149,8 +151,14 @@ function nextTab() {
 		$("#nextButton").html("See Your Pin");
 	}
 	if(visible == 2 ) {
+		if (!checkStep2())
+			return;
 		$("#nextButton").html("Continue");
 		formSubmit();
+	}
+	if(visible == 1) {
+		if (!checkStep1())
+			return;
 	}
 	$('ul.tabs').tabs('select_tab', steps[visible +1]);
 	if(visible == 1) {
@@ -165,28 +173,31 @@ function formSubmit() {
 	
 	var pinsPostRef = pinsRef.push();
 	var check = {"name":rmbc($('#name').val()),"story":rmbc($('#story').val()),"email":rmbc($('#email').val()),lat:locatorMarker.getPosition().H,lng:locatorMarker.getPosition().L, "date": dts()};
-	if (checkForm(check)){
-		pinsPostRef.set({
-			name: check.name,
-			story: check.story,
-			date: Firebase.ServerValue.TIMESTAMP, 
-			lat: check.lat,
-			lng: check.lng
-		}, function(error) {console.log(error)});
-		var pinKey = pinsPostRef.key();
-		//Through Up the email
-		var pinsPrivateRef = rootRef.child('pinsPrivate');
-		pinsPrivateRef.set({
-			pinKey: {
-				email: check.email
-			}
-		}, function(error) {console.log(error)});
-		//add Duplicate pin to map.
-		pins.push(check);
-		currentPin = pins.length-1;
-		putPin(currentPin, 0);
-		pinIndex++;
-	}
+	pinsPostRef.set({
+		name: check.name,
+		story: check.story,
+		date: Firebase.ServerValue.TIMESTAMP, 
+		lat: check.lat,
+		lng: check.lng
+	}, function(error) {
+		if (error) {
+			Materialize.toast("Error: " + error);
+		}
+	});
+	//Through Up the email
+	var pinsPrivateRef = rootRef.child('pinsPrivate').child(pinsPostRef.key());
+	pinsPrivateRef.set({
+		"email": check.email
+	}, function(error) {
+		if (error) {
+			Materialize.toast("Error: " + error);
+		}	
+	});
+	//add Duplicate pin to map.
+	pins.push(check);
+	currentPin = pins.length-1;
+	putPin(currentPin, 0);
+	pinIndex++;
 }
 function focusoncurrent() {
 	$.smoothScroll({
@@ -202,8 +213,38 @@ function dts () {
 	return date.getTime();
 }
 //The future function that is going to check the form. :|
-function checkForm(check) {
+function checkStep1() {
+	if ($('#name').val() == "") {
+		Materialize.toast("Please enter your name.", 4000);
+		$('ul.tabs').tabs('select_tab', 'Step1');
+		$("#name").focus();
+		return false;
+	}
+	if (!validateEmail($('#email').val())) {
+		Materialize.toast("Please enter a valid email.", 4000);
+		$('ul.tabs').tabs('select_tab', 'Step1');
+		$("#email").focus();
+		return false;
+	}
+	if ($('#story').val() == "") {
+		Materialize.toast("Please enter your story.", 4000);
+		$('ul.tabs').tabs('select_tab', 'Step1');
+		$("#story").focus();
+		return false;
+	}
 	return true;
+}
+function checkStep2() {
+	if (!locationSet) {
+		Materialize.toast("Please enter a location and click 'Verify Location.'", 4000);
+		$("#location").focus();
+		return false;
+	}
+	return true;
+}
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
 }
 
 //Remove Bad Characters
