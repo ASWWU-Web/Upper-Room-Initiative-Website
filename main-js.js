@@ -172,17 +172,20 @@ function formSubmit() {
 			date: Firebase.ServerValue.TIMESTAMP, 
 			lat: check.lat,
 			lng: check.lng
-		});
+		}, function(error) {console.log(error)});
+		var pinKey = pinsPostRef.key();
+		//Through Up the email
+		var pinsPrivateRef = rootRef.child('pinsPrivate');
+		pinsPrivateRef.set({
+			pinKey: {
+				email: check.email
+			}
+		}, function(error) {console.log(error)});
 		//add Duplicate pin to map.
 		pins.push(check);
 		currentPin = pins.length-1;
 		putPin(currentPin, 0);
 		pinIndex++;
-		//Through Up the email
-		var pinsPrivateRef = rootRef.child('pinsPrivate/' + pinsPostRef.key());
-		pinsPrivateRef.set({
-			"email": rmbc($('#email').val())
-		});
 	}
 }
 function focusoncurrent() {
@@ -348,24 +351,14 @@ function std(milliseconds){
 
 //Facebook JS
 function facebook() {
-	console.log("Starting Facebook");
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId      : '193673707489176|CSya6L7Q081Uw6OrFfI14AsmfSA',
-			xfbml      : false	,
-			version    : 'v2.4'
-		});
-	};
-	(function(d, s, id){
-		 var js, fjs = d.getElementsByTagName(s)[0];
-		 if (d.getElementById(id)) {return;}
-		 js = d.createElement(s); js.id = id;
-		 js.src = "//connect.facebook.net/en_US/sdk.js";
-		 fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	FB.ui(
-	 {
-	  method: 'share',
-	  href: 'https://developers.facebook.com/docs/'
-	}, function(response){});
+	console.log("Nothing to do for facebook yet.");
+	
+}
+//Facebook share button 
+function facebookShare() {
+	var w = 500;
+	var h = 324;
+	var left = (screen.width/2)-(w/2);
+  	var top = (screen.height/2)-(h/2);
+  	window.open("https://www.facebook.com/dialog/feed?app_id=1476293532700056&display=popup&caption=" + rmbc($("#story").val())+ "&link=https://aswwu.com/prayitforward/&redirect_uri=https://aswwu.com/prayitforward/thanks.html", "Share on Facebook", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 }

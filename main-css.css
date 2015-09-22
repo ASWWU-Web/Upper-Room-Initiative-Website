@@ -20,41 +20,6 @@ html, body, #map-locationSelector {
 	width:150px;
 	height:150px;
 }
-.pushup-animation {
-	position: relative;
-	margin-top: 15px;
-	box-shadow: 0 0 20px #555;
-	border-radius: 50%;
-	width: 150px;
-	height: 150px;
-	-webkit-animation-name: pushup;
-	-webkit-animation-delay: 1s;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-timing-function: ease-in-out;
-	animation-name: pushup;
-	animation-delay: 1s;
-	animation-duration: .5s;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: forwards;
-}
-@-webkit-keyframes pushup {
-	from {}
-	to {
-	-ms-transform: translate(0,-10px); /* IE 9 */
-    -webkit-transform: translate(0,-10px); /* Safari */
-    transform: translate(0, -10px); /* Standard syntax */
-    box-shadow: 0 20px 20px #555;
-	}
-}
-@keyframes pushup {
-	from {}
-	to {
-	-ms-transform: translate(0,-10px); /* IE 9 */
-    -webkit-transform: translate(0,-10px); /* Safari */
-    transform: translate(0, -10px); /* Standard syntax */
-    box-shadow: 0 20px 20px #555;
-	}
-}
 .verticalMagic {
 	position: relative;
 	top: 25%;
@@ -135,3 +100,4 @@ html, body, #map-locationSelector {
 #instafeed::-webkit-scrollbar {
     display: none;
 }
+
