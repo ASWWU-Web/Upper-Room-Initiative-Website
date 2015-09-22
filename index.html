@@ -35,10 +35,6 @@
 		<!--Instafeed js-->
 		<script type="text/javascript" src="instafeed.min.js"></script>
 
-		<!--Facebook Feed-->
-		<script src="jquery.ibacor-fb-streaming.min.js"></script>
-		<link type="text/css" rel="stylesheet" href="jquery.ibacor-fb-streaming.css" !important/>
-
 		<!--Custom CSS and JS-->
 		<link rel="stylesheet" href="main-css.css">
 		<script type="text/javascript" src="main-js.js"></script>
@@ -53,7 +49,7 @@
 		<nav id="nav" class="white">
 		   	<div class="nav-wrapper">
 		   		<a href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><i class="material-icons" style="color: grey; padding-left: 10px; padding-right: 20px;">menu</i></a>
-			    <ul><li class="hide-on-med-and-down"><a href="#" class="" style="max-height:64px;"><img  src="logo-neon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
+			    <ul><li class="hide-on-med-and-down"><a style="max-height:64px;"><img  src="logo-neon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
 			    <!--Title for Large-->
 			    <li class="hide-on-med-and-down text-theme-color" style="font-size: 25px; color: #333; font-weight: 300;">The Upper Room Initiative<li>
 			    <!--Title for Med.-->
@@ -158,8 +154,11 @@
 				<div id="Step3" class="col s12">
 					<h5 class="center-align">Share your prayitforward testinomy.</h5>
 					<div class="row center-align">
+							<a class="waves-effect waves-light btn blue darken-3" onclick="facebookLike()">Like on Facebook</a>
+					</div>
+					<div class="row center-align">
 							<a class="waves-effect waves-light btn blue darken-3" onclick="facebookShare()">Share on Facebook</a>
-						</div>
+					</div>
 				</div>
 				<!--Step4-->
 				<div id="Step4" class="col s12">
@@ -183,7 +182,6 @@
 			<!--Facebook-->
 			<div id="facebook" class="col s12 m6" style="height: 100%; background-color: #7791C9; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2); overflow:hidden;">
 				<img src="facebook-logo.png" style="height: 50px; display: block; margin:0 auto 10px auto;">
-				<iframe src="fanspage.html" frameBorder="0" style="overflow-y: hidden; height:inherit; width: 100%;" seamless="seamless"></iframe>
 			</div>
 		</div>
 		<!--About Us-->
@@ -254,7 +252,7 @@ Phone: <a href="tel://1-(360)477-736">(360)477-736</a>
 		<!--prayItFoward-->
 		<div id="welcome" class="modal">
 			<div class="modal-content" style="background-image: url('logo-light.png');background-repeat:no-repeat;background-size:contain;background-position: center;">
-				<h3 class="center-align">Welcome to the Upper Room Initiative</h3>
+				<h3 class="center-align flow-text"><b>Welcome to the Upper Room Prayer Initiative</b></h3>
 				<h6 class="center-align">If you are here because you received a pin, then <a class="modal-action modal-close smoothScroll" onclick="$('#name').focus()" href="#prayItForward">Pray It Forward</a>.</h6>
 				<h6 class="center-align">Otherwise, check out  what we're all <a class="modal-action modal-close smoothScroll" href="#aboutUs">about</a>.</h6>
 				<div class="modal-footer" style="background-color: rgba(255,255,255,0);">

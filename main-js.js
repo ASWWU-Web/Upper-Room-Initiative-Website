@@ -12,7 +12,9 @@ function initializeTheRest() {
 	$('ul.tabs').tabs('select_tab', 'Step1');
 	checkMapVisible();
 	//Mobile menu button
-	$(".button-collapse").sideNav();
+	$(".button-collapse").sideNav({
+		closeOnClick: true
+	});
 	//Initialize marterialize "tabs"
 	$('ul.tabs').tabs();
 	//This is for smooth scrolling.
@@ -391,11 +393,7 @@ function std(milliseconds){
 //Facebook JS
 function facebook() {
 	console.log("Running facebook");
-	ibacor_fb_streaming(
-		ibacor_fb_id = 1098557016830130, // example your Groups_id or FansPage_id. Find your facebook_id in http://ibacor.com/media/sosmed-user-id-finder/
-		ibacor_fb_limit = 5, // max 25
-		ibacor_fb_token = 'ibacor.com_apps' // => Default using the access_token ibacor.com_apps OR you can change it using the access token that you have => example: ibacor_fb_token = '896774747546|62IEt1ttiNma_543fR5NAg8gNtRI' you can get it in https://developers.facebook.com/docs/apps
-	);
+	$('#facebook').append('<iframe src="fanspage.html" frameBorder="0" style="overflow-y: hidden; height:inherit; width: 100%;" seamless="seamless"></iframe>');
 }
 //Facebook share button 
 function facebookShare() {
@@ -404,4 +402,11 @@ function facebookShare() {
 	var left = (screen.width/2)-(w/2);
   	var top = (screen.height/2)-(h/2);
   	window.open("https://www.facebook.com/dialog/feed?app_id=1476293532700056&display=popup&caption=" + rmbc($("#story").val())+ "&link=https://aswwu.com/prayitforward/&redirect_uri=https://aswwu.com/prayitforward/thanks.html", "Share on Facebook", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+}
+function facebookLike() {
+	var w = 1022;
+	var h = 500;
+	var left = (screen.width/2)-(w/2);
+  	var top = (screen.height/2)-(h/2);
+	window.open("https://www.facebook.com/1098557016830130", "Like us on Facebook", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
 }
