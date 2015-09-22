@@ -269,6 +269,7 @@ var map;
 function initialize() {
 	console.log("Making Map");
 	$("#map-canvas").height($( window ).height() - $( 'nav' ).height());
+	//var center = setM
     var styles = [
 	    {
 	      featureType: 'all',
@@ -323,7 +324,7 @@ function initialize() {
 	];
     var mapOptions = {
     	backgroundColor: "#FFFFFF",
-        center: world,
+        center: unitedStates,
         zoom: 3,
         disableDefaultUI: false,
         scrollwheel: false,
@@ -389,8 +390,12 @@ function std(milliseconds){
 
 //Facebook JS
 function facebook() {
-	console.log("Nothing to do for facebook yet.");
-	
+	console.log("Running facebook");
+	ibacor_fb_streaming(
+		ibacor_fb_id = 1098557016830130, // example your Groups_id or FansPage_id. Find your facebook_id in http://ibacor.com/media/sosmed-user-id-finder/
+		ibacor_fb_limit = 5, // max 25
+		ibacor_fb_token = 'ibacor.com_apps' // => Default using the access_token ibacor.com_apps OR you can change it using the access token that you have => example: ibacor_fb_token = '896774747546|62IEt1ttiNma_543fR5NAg8gNtRI' you can get it in https://developers.facebook.com/docs/apps
+	);
 }
 //Facebook share button 
 function facebookShare() {

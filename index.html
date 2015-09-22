@@ -35,6 +35,10 @@
 		<!--Instafeed js-->
 		<script type="text/javascript" src="instafeed.min.js"></script>
 
+		<!--Facebook Feed-->
+		<script src="jquery.ibacor-fb-streaming.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="jquery.ibacor-fb-streaming.css" !important/>
+
 		<!--Custom CSS and JS-->
 		<link rel="stylesheet" href="main-css.css">
 		<script type="text/javascript" src="main-js.js"></script>
@@ -161,7 +165,7 @@
 				<div id="Step4" class="col s12">
 					<div class="center-align"><div style="margin-top:10px;height:250px; width:auto; background-image: url('main-logo.png');background-repeat:no-repeat;background-size:contain;background-position: center;" src=""></div></div>
 					<h5 class="center-align">Pray for someone and give them your button</h5>
-					<p class="center-align">1. Pray for someone 2.give them your button 3. tell them to pray it forward. <a class="smoothScroll" href="#howItWorks">Learn more</a></p> 
+					<p class="center-align"><b>1.</b> Pray for someone <b>2.</b> Give them your button. <b>3.</b> Tell them to pray it forward. <a class="smoothScroll" href="#howItWorks">Learn more</a></p> 
 					
 				</div>
 			</div>
@@ -177,17 +181,17 @@
 				<div id="instafeed" class="" style="overflow: auto; height: 100%"><img src="prayitforward.png" style="display: block; margin-top: 0; padding-top:10px; margin-left: auto; margin-right:auto;"></div>
 			</div>
 			<!--Facebook-->
-			<div class="col s12 m6" style="height: 100%; background-color: #7791C9; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2)">
-				<img src="facebook-logo.png" style="height: 60px; display: block; margin-top: 0; padding-top:10px; margin-left: auto; margin-right:auto;">
-				<div id="fbwall"></div>
+			<div id="facebook" class="col s12 m6" style="height: 100%; background-color: #7791C9; box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2); overflow:hidden;">
+				<img src="facebook-logo.png" style="height: 50px; display: block; margin:0 auto 10px auto;">
+				<iframe src="fanspage.html" frameBorder="0" style="overflow-y: hidden; height:inherit; width: 100%;" seamless="seamless"></iframe>
 			</div>
 		</div>
 		<!--About Us-->
 		<div style="box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.2);">
 			<div class="container">
 				
-				<div class="row">
-					<div id="aboutUs" class="col s12 m4 l2" style="margin-top:10px;">
+				<div class="row" style="padding-top: 40px;">
+					<div id="aboutUs" class="col s12 m4 l2">
 						<div class="roundTile" style="background-image: url('about1.jpg');">
 							
 						</div>
@@ -195,10 +199,11 @@
 							About Us
 						</h4>
 					</div>
-					<div class="col s12 m8 l10 flow-text" style="margin-top:10px;padding-left:30px;">
+					<div class="col s12 m8 l10 flow-text" style="padding-left:30px;">
 						How often have friends come to you with a problem, big or small? And you responded by assuring them that they would be in your prayers? Do you actually remember to pray for them? There is so much power in prayer that goes unused, and that's what the Upper Room Prayer Initiative was created to bring into play. It's simple purpose is to encourage a focus on person to person to Christ connections. This is the beginning of a grassroots revival, which starts by uniting all 13 North American Division Adventist Universities in prayer. However it is our hope that this prayer revival will spread to people all over the world, from all walks of life. Will you join us in striving to bring our world together by praying it forward today?
 					</div>
 				</div>
+				<hr>
 				<div id="howItWorks" class="row">
 					<div class="col s12 hide-on-med-and-up" style="height:100%;">
 						<div class="roundTile" style="background-image: url('about3.jpg');">
@@ -226,6 +231,7 @@
 						</h4>
 					</div>
 				</div>
+				<hr>
 				<div id="getInvolved" class="row">
 					<div class="col s12 m4 l2" style="height:100%;">
 						<div class="roundTile" style="background-image: url('about2.jpg');">
@@ -249,8 +255,8 @@ Phone: <a href="tel://1-(360)477-736">(360)477-736</a>
 		<div id="welcome" class="modal">
 			<div class="modal-content" style="background-image: url('logo-light.png');background-repeat:no-repeat;background-size:contain;background-position: center;">
 				<h3 class="center-align">Welcome to the Upper Room Initiative</h3>
-				<h6 class="center-align">If you are here because you received a pin <a class="modal-action modal-close smoothScroll" onclick="$('#name').focus()" href="#prayItForward">Pray It Forward</a>.</h6>
-				<h6 class="center-align">Otherwise check out  what we're all <a class="modal-action modal-close smoothScroll" href="#aboutUs">about</a>.</h6>
+				<h6 class="center-align">If you are here because you received a pin, then <a class="modal-action modal-close smoothScroll" onclick="$('#name').focus()" href="#prayItForward">Pray It Forward</a>.</h6>
+				<h6 class="center-align">Otherwise, check out  what we're all <a class="modal-action modal-close smoothScroll" href="#aboutUs">about</a>.</h6>
 				<div class="modal-footer" style="background-color: rgba(255,255,255,0);">
 					<a class="modal-action modal-close waves-effect waves-theme-color btn-flat left">Close</a>
 				</div>

@@ -97,7 +97,12 @@ html, body, #map-locationSelector {
 	64%{transform: translateY(0px);}
 	100%{transform: translateY(0px);}
 }
-#instafeed::-webkit-scrollbar {
+#instafeed::-webkit-scrollbar, #facebook::-webkit-scrollbar iframe::-webkit-scrollbar{
     display: none;
 }
-
+hr {
+	border: none;
+    background-color: #ccc;
+    color: #ccc;
+    height: 1px;
+}

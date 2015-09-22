@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+		<!-- Include jQuery -->
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<!-- Include jquery.ibacor-fb-streaming -->
+		<script src="jquery.ibacor-fb-streaming.min.js"></script>
+		<!-- Configuration your facebook_id & facebook_access_token -->
+		<script>
+			ibacor_fb_streaming(
+				ibacor_fb_id = 1098557016830130, // example your Groups_id or FansPage_id. Find your facebook_id in http://ibacor.com/media/sosmed-user-id-finder/
+				ibacor_fb_limit = 5, // max 25
+				ibacor_fb_token = 'ibacor.com_apps' // => Default using the access_token ibacor.com_apps OR you can change it using the access token that you have => example: ibacor_fb_token = '896774747546|62IEt1ttiNma_543fR5NAg8gNtRI' you can get it in https://developers.facebook.com/docs/apps
+			);
+		</script>
+		<link type="text/css" rel="stylesheet" href="jquery.ibacor-fb-streaming.css" />
+		<!-- Include jQuery fancybox
+		<link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"/>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>-->
+		<script>
+		</script>
+		<style>
+		html {background-color:  #7791C9}
+		</style>
+	</head>
+	<body>
+		<div id="ibacor_fb_content" style="background-color: #7791C9;">
+			<!-- Your facebook streaming -->
+			<div class="ibacor_fb_streaming"></div>
+		</div>
+	</body>
+</html>
