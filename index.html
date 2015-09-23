@@ -49,13 +49,13 @@
 		<nav id="nav" class="white">
 		   	<div class="nav-wrapper">
 		   		<a href="#" data-activates="nav-mobile" class="button-collapse hide-on-med-and-up"><i class="material-icons" style="color: grey; padding-left: 10px; padding-right: 20px;">menu</i></a>
-			    <ul><li class="hide-on-med-and-down"><a style="max-height:64px;"><img  src="logo-neon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
+			    <ul><li class="hide-on-med-and-down"><a style="max-height:64px;" class="smoothScroll" href="#prayItForward"><img  src="logo-neon.png" style=" padding: 7px; max-height: 64px; min-height: 56px;"></a></li>
 			    <!--Title for Large-->
-			    <li class="hide-on-med-and-down text-theme-color" style="font-size: 25px; color: #333; font-weight: 300;">The Upper Room Initiative<li>
+			    <li class="hide-on-med-and-down text-theme-color modal-trigger" data-target="welcome" style="font-size: 25px; color: #333; font-weight: 300;">The Upper Room Initiative<li>
 			    <!--Title for Med.-->
-				<li class="hide-on-small-only hide-on-large-only text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative<li>
+				<li class="hide-on-small-only hide-on-large-only text-theme-color modal-trigger"data-target="welcome" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative<li>
 			    <!--Title for Small-->
-			    <li class="hide-on-med-and-up text-theme-color" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
+			    <li class="hide-on-med-and-up text-theme-color modal-trigger" data-target="welcome" style="font-size: 18px; font-weight: 300;">The Upper Room Initiative</li></ul>
 			    <ul class="right hide-on-small-only">
 				    <li><a class="waves-effect waves-light waves-theme-color text-theme-color smoothScroll" href="#prayItForward">Pray It Forward</a></li>
 					<li id="aobutUsTrigger" class="waves-effect waves-theme-color"><a id="aboutUsTrigger" class="text-theme-color smoothScroll" href="#aboutUs">About Us</a></li>
@@ -98,6 +98,8 @@
 						<li class="tab col s3"><a href="#Step4">Step 4</a></li>
 					</ul>
 				</div>
+				<!--Mobile Text FeedBack-->
+				<div class="mobileText hide-on-large-only center-align"></div>
 				<!--Step1-->
 				<div id="Step1" class="col s12">
 					<h5 class="center-align">Tell Us About Yourself</h5>
@@ -135,7 +137,9 @@
 						<div class="col s12 m6">    <div id="locationMap" style="height: 240px; width: 100%;border-radius:4px;margin-top:20px;"></div></div>
 						<div class="col s12 m6">
 							<h5 class="center-align">Where are you from?</h5>
-							<div class="col s12" style="margin-top: 20px;">
+							<div class="col s12" style="">
+								<!--Mobile Notifier-->
+								<div class="mobileText hide-on-med-and-up center-align"></div>
 								<div class="input-field">
 									<div class="col s12">
 										<input placeholder="Address, City Name, or Zip Code" id="location" type="text">
@@ -146,7 +150,6 @@
 								</div>
 							</div>
 							<button id="locationButton" class="waves-effect waves-light btn" style="margin-top:10px;">Verify Location</button>
-							<div id="locationStatus" style="margin-top:20px;"></div>
 						</div>
 					</div>
 				</div>
@@ -243,12 +246,27 @@ If you, your school or your church would like to be involved, please contact the
 <br>
 Email: <a href="mailto://upperroomprayerinitiative@gmail.com">upperroomprayerinitiative@gmail.com</a>
 <br>
-Phone: <a href="tel://1-(360)477-736">(360)477-736</a>	
+Phone: <a href="tel://1-(360)477-736">1-(360)477-736</a>	
 					</div>
 				</div>
 			</div>
 		</div>
-			
+		<footer class="page-footer grey lighten-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="">That's all Folks</h5>
+                <p class="grey-text">Made with <i class="material-icons tiny" style="color: red;position:relative;top: 3px;">favorite</i> by the ASWWU web team.</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            	<a class="grey-text" style="padding:10px;" href="https://aswwu.com/">ASWWU</a>
+            	<a class="grey-text smoothScroll right" href="#nav">Back to top</a>
+            </div>
+          </div>
+        </footer>
 		<!--prayItFoward-->
 		<div id="welcome" class="modal">
 			<div class="modal-content" style="background-image: url('logo-light.png');background-repeat:no-repeat;background-size:contain;background-position: center;">

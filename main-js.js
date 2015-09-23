@@ -113,7 +113,6 @@ function readyLocatorMap() {
 	//DOM Listener for Geocoding
 	document.getElementById('locationButton').addEventListener('click', function() {
 		console.log("Geocoding");
-		$('#locationStatus').html("Checking...");
 		geocodeLocation(geocoder, locatorMap);
   	});
 }
@@ -126,10 +125,12 @@ function geocodeLocation(geocoder, resultsMap) {
 	if (status === google.maps.GeocoderStatus.OK) {
 	  locatorMap.setCenter(results[0].geometry.location);
 	  locatorMarker.setPosition(results[0].geometry.location);
-	  $('#locationStatus').html("Looks Good! Click next to continue.");
+	  message("Looks Good! Click 'Pin to Map' to continue.");
+	  $('.mobileText').css("color", "green");
 	  locationSet = true;
 	} else {
-	  $('#locationStatus').html('Geocode was not successful for the following reason: ' + status);
+		$('.mobileText').css("color", "red");
+		message('Geocode was not successful for the following reason: ' + status);
 	}
 	});
 }
@@ -159,6 +160,7 @@ function nextTab() {
 		formSubmit();
 	}
 	if(visible == 1) {
+		$('.mobileText').css("color","red");
 		if (!checkStep1())
 			return;
 	}
@@ -218,28 +220,36 @@ function dts () {
 function checkStep1() {
 	if ($('#name').val() == "") {
 		$("#name").focus();
-		Materialize.toast("Please enter your name.", 4000);
+		message("Please enter your name.");
 		return false;
 	}
 	if (!validateEmail($('#email').val())) {
 		$("#email").focus();
-		Materialize.toast("Please enter a valid email.", 4000);
+		message("Please enter a valid email.");
 		return false;
 	}
 	if ($('#story').val() == "") {
 		$("#story").focus();
-		Materialize.toast("Please enter your story.", 4000);
+		message("Please enter your story.");
 		return false;
 	}
+	message("");
 	return true;
 }
 function checkStep2() {
 	if (!locationSet) {
 		$("#location").focus();
-		Materialize.toast("Please enter a location and click 'Verify Location.'", 4000);
+		message("Please enter a location and click 'Verify Location.'");
 		return false;
 	}
+	message("");
 	return true;
+}
+function message(text) {
+	if (text != "")
+		Materialize.toast(text, 4000);
+	$('.mobileText').html(text);
+
 }
 function validateEmail(email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
