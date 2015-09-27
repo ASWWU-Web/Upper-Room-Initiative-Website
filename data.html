@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
+<script>
+var count = 0;
+var ref = new Firebase("https://prayitforward.firebaseio.com/");
+// Create a callback to handle the result of the authentication
+function authHandler(error, authData) {
+  if (error) {
+  	message("Login failed: " + error);
+    console.log("Login Failed!", error);
+  } else {
+  	message("");
+    console.log("Authenticated successfully with payload:", authData);
+    $('#form').remove();
+    populate();
+  }
+}
+function login() {
+	// Or with an email/password combination
+	message("Logging you in...");
+	ref.authWithPassword({
+	  email    : $('#uName').val(),
+	  password : $('#password').val()
+	}, authHandler);
+}
+function message(text) {
+	$('#indicator').html(text);
+}
+var pins = [];
+var pinsPrivate = [];
+function populate() {
+	var pinsRef = ref.child('pins');
+	var pinsPrivateRef = ref.child('pinsPrivate');
+	pinsRef.on("child_added", function(snapshot) {
+		pins.push(snapshot.val());
+		count++;
+		$('#count').html("count:" + count);
+	}, function (errorObject) {
+	  message("The read failed: " + errorObject.code);
+	});
+	pinsPrivateRef.on("child_added", function(snapshot) {
+		pinsPrivate.push(snapshot.val());
+	}, function (errorObject) {
+	  message("The read failed: " + errorObject.code);
+	});
+	window.setTimeout(function() {
+		for (var i = 0; i < pins.length; i++)
+			$("#population").append("<tr><td>" + pins[i].name + "</td><td>" + std(pins[i].date) + "</td><td><a href='mailto:" + pinsPrivate[i].email + "' target='_top'>" + pinsPrivate[i].email + "</a></td><td>" + pins[i].story + "</td></tr>>");
+	},1000);
+	
+}
+function std(milliseconds){
+	var date = new Date(milliseconds);
+	return date.toLocaleTimeString() + " " + date.toLocaleDateString();
+}
+function email() {
+	for (var i = 0; i < pinsPrivate.length; i++ )
+		$('#emails').append(pinsPrivate[i].email + ", ");
+}
+
+</script>
+<style>
+* {
+	font-family: Arial, sans-serif;
+}
+table, td, th {
+    border: 2px solid grey;
+}
+td {
+	padding: 10px;
+}
+table {
+    border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+<div id="form">
+<input type="text" id="uName">
+<input type="password" id="password">
+<button onclick="login()">Login</button>
+</div>
+<p id="indicator"></p>
+<h1 id="count"></h1>
+<button onclick="email()">Get list of emails</button>
+<div id="emails"></div>
+<table id="population" style="width:100%" border="1"></table>
+</body>
+</html>
