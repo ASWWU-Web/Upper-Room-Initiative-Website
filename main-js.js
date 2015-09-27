@@ -8,6 +8,8 @@ function initializeTheRest() {
 	//activate modal
 	$('.modal-trigger').leanModal();
 	$('#welcome').openModal();
+	//Next button Event listener
+	$('#nextButton').on('tap click', nextTab);
 	//Makes PrayitFoward form work nice. 
 	$('ul.tabs').tabs('select_tab', 'Step1');
 	checkMapVisible();
@@ -158,6 +160,10 @@ function nextTab() {
 			return;
 		$("#nextButton").html("Continue");
 		formSubmit();
+		$.smoothScroll({
+	      scrollTarget: '#prayitforward'
+	    });
+
 	}
 	if(visible == 1) {
 		$('.mobileText').css("color","red");
@@ -403,7 +409,7 @@ function std(milliseconds){
 //Facebook JS
 function facebook() {
 	console.log("Running facebook");
-	$('#facebook').append('<iframe src="fanspage.html" frameBorder="0" style="overflow-y: hidden; height:inherit; width: 100%;" seamless="seamless"></iframe>');
+	$('#facebook').append('<iframe src="https://aswwu.com/prayitforward/fanspage.html" frameBorder="0" style="overflow-y: hidden; height:inherit; width: 100%;" seamless="seamless"></iframe>');
 }
 //Facebook share button 
 function facebookShare() {
