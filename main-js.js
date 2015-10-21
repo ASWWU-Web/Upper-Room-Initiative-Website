@@ -182,7 +182,7 @@ function formSubmit() {
 	var pinsRef = rootRef.child('pins');
 	
 	var pinsPostRef = pinsRef.push();
-	var check = {"name":rmbc($('#name').val()),"story":rmbc($('#story').val()),"email":rmbc($('#email').val()),lat:locatorMarker.getPosition().H,lng:locatorMarker.getPosition().L, "date": dts()};
+	var check = {"name":rmbc($('#name').val()),"story":rmbc($('#story').val()),"email":rmbc($('#email').val()),lat:locatorMarker.getPosition().lat(),lng:locatorMarker.getPosition().lng(), "date": dts()};
 	pinsPostRef.set({
 		name: check.name,
 		story: check.story,
