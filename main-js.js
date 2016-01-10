@@ -10,7 +10,7 @@ function initializeTheRest() {
 	$('#welcome').openModal();
 	//Next button Event listener
 	$('#nextButton').on('tap click', nextTab);
-	//Makes PrayitFoward form work nice. 
+	//Makes PrayitFoward form work nice.
 	$('ul.tabs').tabs('select_tab', 'Step1');
 	checkMapVisible();
 	//Mobile menu button
@@ -136,7 +136,7 @@ function geocodeLocation(geocoder, resultsMap) {
 	}
 	});
 }
-//Function to move tabs to the next tab. 
+//Function to move tabs to the next tab.
 function nextTab() {
 	var visible;
 	var steps = ['Null','Step1','Step2','Step3','Step4'];
@@ -160,10 +160,6 @@ function nextTab() {
 			return;
 		$("#nextButton").html("Continue");
 		formSubmit();
-		$.smoothScroll({
-	      scrollTarget: '#prayitforward'
-	    });
-
 	}
 	if(visible == 1) {
 		$('.mobileText').css("color","red");
@@ -174,19 +170,19 @@ function nextTab() {
 	if(visible == 1) {
 		$("#nextButton").html("Pin to Map");
 		$("#location").focus();
-	} 
+	}
 }
 
 var currentPin;
 function formSubmit() {
 	var pinsRef = rootRef.child('pins');
-	
+
 	var pinsPostRef = pinsRef.push();
 	var check = {"name":rmbc($('#name').val()),"story":rmbc($('#story').val()),"email":rmbc($('#email').val()),lat:locatorMarker.getPosition().lat(),lng:locatorMarker.getPosition().lng(), "date": dts()};
 	pinsPostRef.set({
 		name: check.name,
 		story: check.story,
-		date: Firebase.ServerValue.TIMESTAMP, 
+		date: Firebase.ServerValue.TIMESTAMP,
 		lat: check.lat,
 		lng: check.lng
 	}, function(error) {
@@ -201,7 +197,7 @@ function formSubmit() {
 	}, function(error) {
 		if (error) {
 			Materialize.toast("Error: " + error);
-		}	
+		}
 	});
 	//add Duplicate pin to map.
 	pins.push(check);
@@ -263,12 +259,12 @@ function validateEmail(email) {
 }
 
 //Remove Bad Characters
-function rmbc(strTemp) {  
-    strTemp = strTemp.replace(/[^A-Za-z0-9_!?.@();: ]/g,"");  
-    return strTemp; 
+function rmbc(strTemp) {
+    strTemp = strTemp.replace(/[^A-Za-z0-9_!?.@();: ]/g,"");
+    return strTemp;
 }
 
-//This function makes the map ocupy the correct amount of space. 
+//This function makes the map ocupy the correct amount of space.
 $(window).resize(function() {
     console.log("Window Resize");
     $("#map-canvas").height($( window ).height() - $( 'nav' ).height());
@@ -411,7 +407,7 @@ function facebook() {
 	console.log("Running facebook");
 	$('#facebook').append('<iframe src="https://aswwu.com/prayitforward/fanspage.html" frameBorder="0" style="overflow-y: hidden; height:inherit; width: 100%;" seamless="seamless"></iframe>');
 }
-//Facebook share button 
+//Facebook share button
 function facebookShare() {
 	var w = 500;
 	var h = 324;
